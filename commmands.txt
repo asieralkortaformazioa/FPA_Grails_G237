@@ -1,0 +1,8 @@
+
+
+
+clear && grails clean && grails run-app
+
+
+grails -Dgrails.env=development db-reverse-engineer
+

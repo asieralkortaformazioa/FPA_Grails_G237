@@ -11,6 +11,7 @@ class CplxTranslation {
 		version false
 	}
 
+
 	static constraints = {
 		type nullable: true, maxSize: 30
 		complexity nullable: true

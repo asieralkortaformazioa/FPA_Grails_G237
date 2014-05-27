@@ -1,10 +1,13 @@
 package FPA_Webapp
 
+import FPA_Webapp_G237.ComplexityMatrix
+import core.FpaViewBean
+
 class FPACountController {
 
     def index() {
         redirect (action : "showCount", params: params)
-//        redirect (action : "doCount", params: params)fi
+//        redirect (action : "doCount", params: params)
     }
     //static allowedMethods = [ showcount: "GET" , doCount:"POST" ]
 
@@ -16,44 +19,82 @@ class FPACountController {
     def doCount ()
 //    (@RequestParameter ('ilfRetCount ')  String  ilfRetCount, @RequestParameter ('ilfDetCount ')  String  ilfDetCount,
 //                 @RequestParameter ('eifRetCount ')  String  eifRetCount, @RequestParameter ('eifDetCount ')  String  eifDetCount)
-        {
-        println ("doCount");
+    {
+        println("doCount");
         def countService = new CountService();
 
         //ILF count
 //        def ilfRetCount = params.ilfRetCount; //params.get('ilfRetCount')
 //        def ilfDetCount = params.ilfDetCount ; //get('ilfDetCount')
 
-        println ("params:"+params.get('ilfRetCount'));
-        println ("params:"+params.ilfRetCount);
-        println ("type:"+CountService.ComplexityTypes.ILF.name())
+        println("params:" + params.get('ilfRetCount'));
+        println("params:" + params.ilfRetCount);
+        println("type:" + CountService.ComplexityTypes.ILF.name())
 //        println ("ilfRetCount:"+ilfRetCount)
 //        println ("ilfDetCount:"+ilfDetCount)
-        println("params:"+params)
-        println("countService:"+countService)
+        println("params:" + params)
+        println("countService:" + countService)
 
-        Integer ilfRetCountI;
-        if (params.ilfRetCount!=null)
-            ilfRetCountI= params.ilfRetCount.toInteger();
 
-        Integer ilfDetCountI;
-        if (params.ilfDetCount!=null)
-            ilfDetCountI= params.ilfDetCount.toInteger();
+        FpaViewBean result = new FpaViewBean();
 
-        Integer eifRetCountI;
-        if (params.eifRetCount!=null)
-            eifRetCountI= params.eifRetCount.toInteger();
 
-        Integer eifDetCountI;
-        if (params.eifDetCount!=null)
-            eifDetCountI= params.eifDetCount.toInteger();
 
-        println ("ilfRetCountI:"+ilfRetCountI)
-        println ("ilfDetCountI:"+ilfDetCountI)
+        if (params.ilfRetCount != null && !"".equals(params.ilfRetCount))
+            result.setIlfRetCount(params?.ilfRetCount?.toInteger());
+
+
+
+        if (params.ilfDetCount != null && !"".equals(params.ilfDetCount))
+            result.setIlfDetCount (params?.ilfDetCount?.toInteger());
+
+
+
+        if (params.eifRetCount != null && !"".equals(params.eifRetCount))
+            result.setEifRetCount(params?.eifRetCount?.toInteger());
+
+
+
+        if (params.eifDetCount != null && !"".equals(params.eifDetCount))
+            result.setEifDetCount(params?.eifDetCount?.toInteger());
+
+
+
         String type = CountService.ComplexityTypes.ILF.name()
 
-        println ("type:"+type)
-        def ilfFPCountI = countService.getFPCount(type, ilfRetCountI, ilfDetCountI)
+        println("type:" + type)
+
+
+        println("Counting data functions: ")
+        def ilfFPCountI = countService.getComplexityFromMatrixCount(CountService.ComplexityTypes.ILF.name(), result.getIlfRetCount(), result.getIlfDetCount(), result)
+
+        def eifFPCountI = countService.getComplexityFromMatrixCount(CountService.ComplexityTypes.EIF.name (), result.getIlfRetCount(), result.getIlfDetCount(), result)
+
+
+
+        if (params.eiFtrCount != null && !"".equals(params.eiFtrCount))
+            result.setEiFtrCount(params?.eiFtrCount?.toInteger());
+
+        if (params.eiDetCount != null && !"".equals(params.eiDetCount))
+            result.setEiDetCount(params?.eiDetCount?.toInteger());
+
+        if (params.eoFtrCount!=null && !"".equals(params.eoFtrCount))
+            result.setEoFtrCount(params?.eoFtrCount?.toInteger());
+
+        if (params.eoDetCount!=null && !"".equals(params.eoDetCount))
+            result.setEoDetCount(params?.eoDetCount?.toInteger());
+
+        if (params.eqFtrCount!=null && !"".equals(params.eqFtrCount))
+            result.setEqFtrCount(params?.eqFtrCount?.toInteger());
+
+        if (params.eqDetCount!=null && !"".equals(params.eqDetCount))
+            result.setEqDetCount(params?.eqDetCount?.toInteger());
+
+
+        def txFP = countService.countTransactionalFunctions ( result.getEiFtrCount(), result.getEiDetCount(), result.getEoFtrCount(),result.getEoDetCount(), result.getEqFtrCount(), result.getEqDetCount(), result );
+
+
+
 
         //EIF count
 //        println ("eifRetCountI:"+eifRetCountI)
@@ -61,7 +102,8 @@ class FPACountController {
 //            type = CountService.ComplexityTypes.EIF.name()
 //        def eifFPCountI = countService.getFPCount(type ,eifRetCountI, eifDetC ountI)
 
-        render(view: "index") //, eifCount:eifFPCountI])
+        println("viewBean:"+result);
+        render(view: "index", model: [viewBean: result]) //, eifCount:eifFPCountI])
             //, model: [ilfCount: ilfFPCountI ]
 //        return [ilfCount: ilfFPCountI , eifCount:eifFPCountI]
 
