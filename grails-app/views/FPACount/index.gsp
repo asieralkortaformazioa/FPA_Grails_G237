@@ -9,100 +9,144 @@
 <html>
 <head>
     <title>FPACount</title>
-    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>
 </head>
 
 viewBean:${viewBean}
     <body>
 
+<script lang="text/javascript">
 $(document).ready (function (){
-    alert ("ready");
+    //alert ("ready");
     $("#helpAdjustemntFactor").hide();
     $("#helpAf1").hide();
-$("#helpAf2").hide();
-$("#helpAf3").hide();
-$("#helpAf4").hide();
-$("#helpAf5").hide();
-$("#helpAf6").hide();
-$("#helpAf7").hide();
-$("#helpAf8").hide();
-$("#helpAf9").hide();
-$("#helpAf10").hide();
-$("#helpAf11").hide();
-$("#helpAf12").hide();
-$("#helpAf13").hide();
-$("#helpAf14").hide();
+    $("#helpAf2").hide();
+    $("#helpAf3").hide();
+    $("#helpAf4").hide();
+    $("#helpAf5").hide();
+    $("#helpAf6").hide();
+    $("#helpAf7").hide();
+    $("#helpAf8").hide();
+    $("#helpAf9").hide();
+    $("#helpAf10").hide();
+    $("#helpAf11").hide();
+    $("#helpAf12").hide();
+    $("#helpAf13").hide();
+    $("#helpAf14").hide();
 
 
 
 
-}
+            $( "#txtAdjustmentFactor" ).click(function() {
+                if ($("#helpAdjustemntFactor").is(":hidden"))
+                    $("#helpAdjustemntFactor").show();
+                else
+                    $("#helpAdjustemntFactor").hide();
+            });
+
+            $( "#af1" ).click(function() {
+                if ($("#helpAf1").is(":hidden"))
+                    $("#helpAf1").show();
+                else
+                    $("#helpAf1").hide();
+            });
+
+            $( "#af2" ).click(function() {
+                if ($("#helpAf2").is(":hidden"))
+                    $("#helpAf2").show();
+                else
+                    $("#helpAf2").hide();
+            });
+
+            $( "#af3" ).click(function() {
+                if ($("#helpAf3").is(":hidden"))
+                    $("#helpAf3").show();
+                else
+                    $("#helpAf3").hide();
+            });
+
+            $( "#af4" ).click(function() {
+                if ($("#helpAf4").is(":hidden"))
+                    $("#helpAf4").show();
+                else
+                    $("#helpAf4").hide();
+            });
+
+            $( "#af5" ).click(function() {
+                if ($("#helpAf5").is(":hidden"))
+                    $("#helpAf5").show();
+                else
+                    $("#helpAf5").hide();
+            });
+
+            $( "#af6" ).click(function() {
+                if ($("#helpAf6").is(":hidden"))
+                    $("#helpAf6").show();
+                else
+                    $("#helpAf6").hide();
+            });
+
+
+            $( "#af7" ).click(function() {
+                if ($("#helpAf7").is(":hidden"))
+                    $("#helpAf7").show();
+                else
+                    $("#helpAf7").hide();
+            });
+
+            $( "#af8" ).click(function() {
+                if ($("#helpAf8").is(":hidden"))
+                    $("#helpAf8").show();
+                else
+                    $("#helpAf8").hide();
+            });
+
+            $( "#af9" ).click(function() {
+                if ($("#helpAf9").is(":hidden"))
+                    $("#helpAf9").show();
+                else
+                    $("#helpAf9").hide();
+            });
+
+            $( "#af10" ).click(function() {
+                if ($("#helpAf10").is(":hidden"))
+                    $("#helpAf10").show();
+                else
+                    $("#helpAf10").hide();
+            });
+
+            $( "#af11" ).click(function() {
+                if ($("#helpAf11").is(":hidden"))
+                    $("#helpAf11").show();
+                else
+                    $("#helpAf11").hide();
+            });
+
+            $( "#af12" ).click(function() {
+                if ($("#helpAf12").is(":hidden"))
+                    $("#helpAf12").show();
+                else
+                    $("#helpAf12").hide();
+            });
+
+            $( "#af13" ).click(function() {
+                if ($("#helpAf13").is(":hidden"))
+                    $("#helpAf13").show();
+                else
+                    $("#helpAf13").hide();
+            });
+
+            $( "#af14" ).click(function() {
+                if ($("#helpAf14").is(":hidden"))
+                    $("#helpAf14").show();
+                else
+                    $("#helpAf14").hide();
+            });
+    }
 );
 
 
-
-
-$( "#txtAdjustmentFactor" ).click(function() {
-    $("#helpAdjustemntFactor").show();
-});
-
-$( "#af1" ).click(function() {
-    $("#helpAf1").show();
-});
-
-$( "#af2" ).click(function() {
-$("#helpAf2").show();
-});
-
-$( "#af3" ).click(function() {
-$("#helpAf3").show();
-});
-
-$( "#af4" ).click(function() {
-$("#helpAf4").show();
-});
-
-$( "#af5" ).click(function() {
-$("#helpAf5").show();
-});
-
-$( "#af6" ).click(function() {
-$("#helpAf6").show();
-});
-
-
-$( "#af7" ).click(function() {
-$("#helpAf7").show();
-});
-
-$( "#af8" ).click(function() {
-$("#helpAf8").show();
-});
-
-$( "#af9" ).click(function() {
-$("#helpAf9").show();
-});
-
-$( "#af10" ).click(function() {
-$("#helpAf10").show();
-});
-
-$( "#af11" ).click(function() {
-$("#helpAf11").show();
-});
-
-$( "#af12" ).click(function() {
-$("#helpAf12").show();
-});
-
-$( "#af13" ).click(function() {
-$("#helpAf13").show();
-});
-
-$( "#af14" ).click(function() {
-$("#helpAf14").show();
-});
-
+</script>
 
         <p><h1>Function Point Analysis</h1></p>
 
@@ -153,7 +197,7 @@ $("#helpAf14").show();
                         5 Strong influence throughout
                     </div>
 
-                    <p id="af1">1. Data Communications: <g:textField id="af1Count" name="af1Count" value="${viewBean?.af1Count}"  /></p>
+                    <p >1. Data Communications: <img width="20" height="20" src="../images/help.jpg" id="af1" /> <g:textField id="af1Count" name="af1Count" value="${viewBean?.af1Count}"  /></p>
                     <div id="helpAf1">
                         <p>Definition: Data Communications describes the degree to which the application
                         communicates directly with the processor.
@@ -251,8 +295,8 @@ $("#helpAf14").show();
                     </div>
 
 
-                    <p id="af2">2. Distributed Data Processing: <g:textField id="af2Count" name="af2Count" value="${viewBean?.af2Count}"  /></p>
-                    <div id="helpaf2" >
+                    <p >2. Distributed Data Processing <img width="20" height="20" src="../images/help.jpg" id="af2" />: <g:textField id="af2Count" name="af2Count" value="${viewBean?.af2Count}"  /></p>
+                    <div id="helpAf2" >
                         <p>Definition: Distributed Data Processing describes the degree to which the application
                         transfers data among physical components of the application.
                         Distributed data or processing functions are a characteristic of the application
@@ -270,8 +314,8 @@ $("#helpAf14").show();
                             </table>
                     </div>
 
-                    <p id="af3">3. Performance: <g:textField id="af3Count" name="af3Count" value="${viewBean?.af3Count}"  /></p>
-                    <div id="helpaf3" >
+                    <p >3. Performance <img width="20" height="20" src="../images/help.jpg" id="af3" />: <g:textField id="af3Count" name="af3Count" value="${viewBean?.af3Count}"  /></p>
+                    <div id="helpAf3" >
                         <p>Definition: Performance describes the degree to which response time and throughput
                         performance considerations influenced the application development.
                         Application performance objectives, stated or approved (or implied) by the
@@ -291,8 +335,8 @@ $("#helpAf14").show();
                     </div>
 
 
-                <p id="af4">4. Heavily Used Configuration : <g:textField id="af4Count" name="af4Count" value="${viewBean?.af4Count}"  /></p>
-                <div id="helpaf4" >
+                <p >4. Heavily Used Configuration <img width="20" height="20" src="../images/help.jpg" id="af4" />: <g:textField id="af4Count" name="af4Count" value="${viewBean?.af4Count}"  /></p>
+                <div id="helpAf4" >
                     <p>Definition: Heavily Used Configuration describes the degree to which computer resource
                     restrictions influenced the development of the application.
                     A heavily used operational configuration may require special considerations
@@ -311,8 +355,8 @@ $("#helpAf14").show();
                     </table>
                 </div>
 
-                    <p id="af5">5. Transaction Rate: <g:textField id="af5Count" name="af5Count" value="${viewBean?.af5Count}"  /></p>
-                        <div id="helpaf5" >
+                    <p >5. Transaction Rate <img width="20" height="20" src="../images/help.jpg" id="af5" />: <g:textField id="af5Count" name="af5Count" value="${viewBean?.af5Count}"  /></p>
+                        <div id="helpAf5" >
                             <p>Definition: Transaction Rate describes the degree to which the rate of business
                             transactions influenced the development of the application.
                             The transaction rate is high, and it influences the design, development,
@@ -330,8 +374,8 @@ $("#helpAf14").show();
 
                             </table>
                         </div>
-                    <p id="af6">6. Online Data Entry: <g:textField id="af6Count" name="af6Count" value="${viewBean?.af6Count}"  /></p>
-                    <div id="helpaf6" >
+                    <p >6. Online Data Entry <img width="20" height="20" src="../images/help.jpg" id="af6" />: <g:textField id="af6Count" name="af6Count" value="${viewBean?.af6Count}"  /></p>
+                    <div id="helpAf6" >
                         <p>Definition: Online Data Entry describes the degree to which data is entered or retrieved
                         through interactive transactions.
                         On-line User Interface for data entry, control functions, reports, and queries
@@ -348,8 +392,8 @@ $("#helpAf14").show();
 
                         </table>
                     </div>
-                    <p id="af7">7. End-User Efficiency: <g:textField id="af7Count" name="af7Count" value="${viewBean?.af7Count}"  /></p>
-                        <div id="helpaf7" >
+                    <p >7. End-User Efficiency <img width="20" height="20" src="../images/help.jpg" id="af7" />: <g:textField id="af7Count" name="af7Count" value="${viewBean?.af7Count}"  /></p>
+                        <div id="helpAf7" >
                             <p>Definition:
                             End-User Efficiency describes the degree of consideration for human factors
                             and ease of use for the user of the application measured.
@@ -384,8 +428,8 @@ $("#helpAf14").show();
 
                             </table>
                         </div>
-                    <p id="af8">8. Online Update: <g:textField id="af8Count" name="af8Count" value="${viewBean?.af8Count}"  /></p>
-                    <div id="helpaf8" >
+                    <p >8. Online Update <img width="20" height="20" src="../images/help.jpg" id="af8" />: <g:textField id="af8Count" name="af8Count" value="${viewBean?.af8Count}"  /></p>
+                    <div id="helpAf8" >
                         <p>Definition: On-line Update describes the degree to which internal logical files are updated on-line.
                         The application provides on-line update for the internal logical files.</p>
                         <table>
@@ -399,8 +443,8 @@ $("#helpAf14").show();
 
                         </table>
                     </div>
-                    <p id="af9">9. Complex Processing: <g:textField id="af9Count" name="af9Count" value="${viewBean?.af9Count}"  /></p>
-                    <div id="helpaf9" >
+                    <p >9. Complex Processing <img width="20" height="20" src="../images/help.jpg" id="af9" />: <g:textField id="af9Count" name="af9Count" value="${viewBean?.af9Count}"  /></p>
+                    <div id="helpAf9" >
                         <p>
                             Complex processing describes the degree to which processing logic
                             influenced the development of the application. The following components are
@@ -423,8 +467,8 @@ $("#helpAf14").show();
 
                         </table>
                     </div>
-                    <p id="af10">10. Reusability: <g:textField id="af10Count" name="af10Count" value="${viewBean?.af10Count}"  /></p>
-                        <div id="helpaf10" >
+                    <p >10. Reusability <img width="20" height="20" src="../images/help.jpg" id="af10" />: <g:textField id="af10Count" name="af10Count" value="${viewBean?.af10Count}"  /></p>
+                        <div id="helpAf10" >
                             <p>Definition: Reusability describes the degree to which the application and the code in the
                             application have been specifically designed, developed, and supported to be
                             usable in other applications.</p>
@@ -439,8 +483,8 @@ $("#helpAf14").show();
 
                             </table>
                        </div>
-                    <p id="af11">11. Installation Ease: <g:textField id="af11Count" name="af11Count" value="${viewBean?.af11Count}"  /></p>
-                        <div id="helpaf11" >
+                    <p >11. Installation Ease <img width="20" height="20" src="../images/help.jpg" id="af11" />: <g:textField id="af11Count" name="af11Count" value="${viewBean?.af11Count}"  /></p>
+                        <div id="helpAf11" >
                             <p>Definition: Installation Ease describes the degree to which conversion from previous
                         environments influenced the development of the application.
                         Conversion and installation ease are characteristics of the application. A
@@ -457,8 +501,8 @@ $("#helpAf14").show();
 
                             </table>
                         </div>
-                    <p id="af12">12. Operational Ease: <g:textField id="af12Count" name="af12Count" value="${viewBean?.af12Count}"  /></p>
-                    <div id="helpaf12" >
+                    <p >12. Operational Ease <img width="20" height="20" src="../images/help.jpg" id="af12" />: <g:textField id="af12Count" name="af12Count" value="${viewBean?.af12Count}"  /></p>
+                    <div id="helpAf12" >
                         <p>Definition: Operational Ease describes the degree to which the application attends to
                         operational aspects, such as start-up, back-up, and recovery processes.
                         Operational ease is a characteristic of the application. The application
@@ -478,8 +522,8 @@ $("#helpAf14").show();
 
                         </table>
                     </div>
-                    <p id="af13">13. Multiple Sites: <g:textField id="af13Count" name="af13Count" value="${viewBean?.af13Count}"  /></p>
-                    <div id="helpaf13" >
+                    <p >13. Multiple Sites <img width="20" height="20" src="../images/help.jpg" id="af13" />: <g:textField id="af13Count" name="af13Count" value="${viewBean?.af13Count}"  /></p>
+                    <div id="helpAf13" >
                         <p>Definition: Installation Ease describes the degree to which conversion from previous
                         environments influenced the development of the application.
                         Conversion and installation ease are characteristics of the application. A
@@ -496,8 +540,8 @@ $("#helpAf14").show();
 
                         </table>
                     </div>
-                    <p id="af14">14. Facilitate Change: <g:textField id="af14Count" name="af14Count" value="${viewBean?.af14Count}"  /></p>
-                    <div id="helpaf14" >
+                    <p >14. Facilitate Change <img width="20" height="20" src="../images/help.jpg" id="af14" />: <g:textField id="af14Count" name="af14Count" value="${viewBean?.af14Count}"  /></p>
+                    <div id="helpAf14" >
                         <p>Definition
                         Facilitate Change describes the degree to which the application has been
                         developed for easy modification of processing logic or data structure.
