@@ -209,7 +209,12 @@ class CountService {
             sum += viewBean.getEoCount()
             sum += viewBean.getEqCount()
 
+            viewBean.setUnadjustedFps(sum)
+
+
         }
+
+
         return sum;
     }
 
