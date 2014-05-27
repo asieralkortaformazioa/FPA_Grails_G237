@@ -46,6 +46,63 @@ $( "#txtAdjustmentFactor" ).click(function() {
     $("#helpAdjustemntFactor").show();
 });
 
+$( "#af1" ).click(function() {
+    $("#helpAf1").show();
+});
+
+$( "#af2" ).click(function() {
+$("#helpAf2").show();
+});
+
+$( "#af3" ).click(function() {
+$("#helpAf3").show();
+});
+
+$( "#af4" ).click(function() {
+$("#helpAf4").show();
+});
+
+$( "#af5" ).click(function() {
+$("#helpAf5").show();
+});
+
+$( "#af6" ).click(function() {
+$("#helpAf6").show();
+});
+
+
+$( "#af7" ).click(function() {
+$("#helpAf7").show();
+});
+
+$( "#af8" ).click(function() {
+$("#helpAf8").show();
+});
+
+$( "#af9" ).click(function() {
+$("#helpAf9").show();
+});
+
+$( "#af10" ).click(function() {
+$("#helpAf10").show();
+});
+
+$( "#af11" ).click(function() {
+$("#helpAf11").show();
+});
+
+$( "#af12" ).click(function() {
+$("#helpAf12").show();
+});
+
+$( "#af13" ).click(function() {
+$("#helpAf13").show();
+});
+
+$( "#af14" ).click(function() {
+$("#helpAf14").show();
+});
+
 
         <p><h1>Function Point Analysis</h1></p>
 
