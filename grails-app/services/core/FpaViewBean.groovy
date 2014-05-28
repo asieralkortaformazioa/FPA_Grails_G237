@@ -28,7 +28,7 @@ class FpaViewBean {
     private Integer eqDetCount
 
     private Integer unadjustedFps;
-    private Integer adjustedFps;
+    private BigDecimal adjustedFps;
 
 
     private Integer af1Count;
@@ -182,7 +182,7 @@ class FpaViewBean {
         return adjustedFps
     }
 
-    void setAdjustedFps(Integer adjustedFps) {
+    void setAdjustedFps(BigDecimal adjustedFps) {
         this.adjustedFps = adjustedFps
     }
 

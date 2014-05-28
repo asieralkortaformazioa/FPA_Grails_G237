@@ -9,7 +9,11 @@
 <html>
 <head>
     <title>FPACount</title>
-    <script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/jquery.dataTables.css">
+    <!--<script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script> -->
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" charset="utf8" src="../js/jquery.dataTables.js"></script>
+
 </head>
 
 viewBean:${viewBean}
@@ -17,6 +21,14 @@ viewBean:${viewBean}
 
 <script lang="text/javascript">
 $(document).ready (function (){
+
+// DataTable:
+            $(document).ready( function () {
+                $('#table_id').DataTable();
+            } );
+
+
+
     //alert ("ready");
     $("#helpAdjustemntFactor").hide();
     $("#helpAf1").hide();
@@ -168,7 +180,7 @@ $(document).ready (function (){
 
 
         <div style="border:2px solid;border-radius:25px;">
-                <p><h2>Transactional Funcitons:</h2></p>
+                <p><h2>Transactional Functions:</h2></p>
 
                 <p>EIs:</p>
                 <p> FTR Count: <g:textField id="eiFtrCount" name="eiFtrCount" value="${viewBean?.eiFtrCount}" /></p>
@@ -183,11 +195,7 @@ $(document).ready (function (){
                 <p> DET Count: <g:textField id="eqDetCount" name="eqDetCount" value="${viewBean?.eqDetCount}" /></p>
         </div>
 
-
-
-
-
-        <g:render template="adjustment" />
+                <g:render template="adjustment" />
 
                 <g:submitButton name="Calculate" value="Calculate"/>
 
@@ -195,7 +203,8 @@ $(document).ready (function (){
 
 
         <g:render template="result"/>
-<body>
+
+    </body>
 </html>
 
 

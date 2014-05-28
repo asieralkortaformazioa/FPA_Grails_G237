@@ -170,17 +170,26 @@ class CountService {
     }
 
 
-    Integer countTransactionalFunctions( Integer eiFtr, Integer eiDet, Integer eoFtr, Integer eoDet, Integer eqFtr, Integer eqDet, FpaViewBean result )
+
+    def calculateConversionContribution (FpaViewBean viewBean)
     {
-        Integer eiFp= this.getComplexityFromMatrixCount (ComplexityTypes.EI.name(), eiFtr, eiDet, result)
+        //TODO
+        println ("TODO");
+        return 0;
+    }
+
+    Integer countTransactionalFunctions( FpaViewBean result )
+    {
+        // Integer eiFtr, Integer eiDet, Integer eoFtr, Integer eoDet, Integer eqFtr, Integer eqDet,
+        Integer eiFp= this.getComplexityFromMatrixCount (ComplexityTypes.EI.name(), result.getEiFtrCount(), result.getEiDetCount(), result)
         println ("eiFP:"+eiFp);
         result.setEiCount(eiFp)
 
-        Integer eoFp = this.getComplexityFromMatrixCount (ComplexityTypes.EO.name(), eoFtr, eoDet, result)
+        Integer eoFp = this.getComplexityFromMatrixCount (ComplexityTypes.EO.name(), result.getEoFtrCount(), result.getEoDetCount(), result)
         println ("eoFp:"+eoFp);
         result.setEoCount(eoFp)
 
-        Integer eqFp = this.getComplexityFromMatrixCount (ComplexityTypes.EQ.name(), eqFtr, eqDet, result)
+        Integer eqFp = this.getComplexityFromMatrixCount (ComplexityTypes.EQ.name(), result.getEqFtrCount(), result.getEoDetCount(), result)
         println ("eqFp:"+eqFp);
         result.setEqCount(eqFp)
 
@@ -197,26 +206,85 @@ class CountService {
         return sum
     }
 
+
     def calculateUnAdjustedFPs (FpaViewBean viewBean)
     {
         Integer sum = 0;
         if (viewBean!=null)
         {
 
-            sum += viewBean.getIlfCount()
-            sum += viewBean.getEifCount()
-            sum += viewBean.getEiCount()
-            sum += viewBean.getEoCount()
-            sum += viewBean.getEqCount()
+            sum += viewBean?.getIlfCount()!=null?viewBean?.getIlfCount():0
+            sum += viewBean?.getEifCount()!=null?viewBean?.getEifCount():0
+            sum += viewBean?.getEiCount()!=null?viewBean?.getEiCount():0
+            sum += viewBean?.getEoCount()!=null?viewBean?.getEoCount():0
+            sum += viewBean?.getEqCount()!=null?viewBean?.getEqCount():0
 
             viewBean.setUnadjustedFps(sum)
-
-
         }
-
 
         return sum;
     }
 
 
+    def calculateAdjustmentFactor (FpaViewBean viewBean)
+    {
+        //vaF= (TDI *0.01)+0.65
+        def res =0;
+        def vaf =0;
+        if (viewBean !=null)
+        {
+            res += viewBean?.af1Count!=null?viewBean?.af1Count:0
+            res += viewBean?.af2Count!=null?viewBean?.af2Count:0
+            res += viewBean?.af3Count!=null?viewBean?.af3Count:0
+            res += viewBean?.af4Count!=null?viewBean?.af4Count:0
+            res += viewBean?.af5Count!=null?viewBean?.af5Count:0
+            res += viewBean?.af6Count!=null?viewBean?.af6Count:0
+            res += viewBean?.af7Count!=null?viewBean?.af7Count:0
+            res += viewBean?.af8Count!=null?viewBean?.af8Count:0
+            res += viewBean?.af9Count!=null?viewBean?.af9Count:0
+            res += viewBean?.af10Count!=null?viewBean?.af10Count:0
+            res += viewBean?.af11Count!=null?viewBean?.af11Count:0
+            res += viewBean?.af12Count!=null?viewBean?.af12Count:0
+            res += viewBean?.af13Count!=null?viewBean?.af13Count:0
+            res += viewBean?.af14Count!=null?viewBean?.af14Count:0
+
+        }
+
+        vaf = (res * 0.01) + 0.65
+        return vaf;
+    }
+
+
+    def calculateAdjustedFunctionPoints (FpaViewBean viewBean)
+    {
+
+        //DFP = (UFP +CFP )*VAF
+/*
+        result = (unadjustedFP + ConversionContribution (==0?))* AdjustmentFactor
+
+        result = (unadjustedFP )* AdjustmentFactor
+
+        TDI = res cuestionario
+
+        vaF= (TDI *0.01)+0.65
+
+        Float result = (TDI *0.01)+0.65
+*/
+        def fps =null
+        if (viewBean!=null) {
+
+            if (viewBean?.getUnadjustedFps() == null)
+                calculateUnAdjustedFPs(viewBean)
+
+            def unadjustedFPs = viewBean.getUnadjustedFps();
+            def adjFactor = calculateAdjustmentFactor(viewBean);
+            def conversionContribution = calculateConversionContribution(viewBean);
+            fps = (unadjustedFPs + (conversionContribution != null ? conversionContribution : 0)) * adjFactor;
+            viewBean?.setAdjustedFps(fps)
+        }
+        return fps;
+    }
+
+
 }
+
