@@ -1,5 +1,6 @@
 package FPA_Webapp
 
+import core.FunctionTypes
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 
@@ -15,6 +16,16 @@ class FunctionalitiesControllerSpec extends Specification {
     def cleanup() {
     }
 
-    void "test something"() {
+    void "test creation"() {
+        when:
+            params.description ="testFunct"
+            params.type= "EIF"
+            params.hCount= 5
+            params.vCount =6
+            params.idProj=1
+            controller.create()
+        then:
+            response.text !=null && !"".equals(response.text)
+
     }
 }

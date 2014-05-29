@@ -7,7 +7,6 @@ class Projects {
 	static hasMany = [functionalities: Functionality]
 
 	static mapping = {
-		id generator: "assigned"
 		version false
 	}
 

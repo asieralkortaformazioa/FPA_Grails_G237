@@ -13,7 +13,9 @@ class FPACountController {
 
     def showCount = {
         println ("showCount");
-        render(view: "index", model: [ilfCount: 0, eifCount : 0])
+        def viewBean = new FpaViewBean();
+        getProjects (viewBean);
+        render(view: "index", model: [viewBean: viewBean])
     }
 
     def countService = new CountService();

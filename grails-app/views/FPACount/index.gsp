@@ -24,6 +24,8 @@ $(document).ready (function () {
 //    alert("Ready");
     configAdjustment();
 
+    loadFunctionalities (document.getElementById("projects").value);
+
 });
 
 
@@ -33,7 +35,7 @@ $(document).ready (function () {
 
 
 
-        <!-- g:render template="projects"-->
+        <g:render template="projects"/>
 
 
         <g:form action="doCount" >

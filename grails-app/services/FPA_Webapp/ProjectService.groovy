@@ -2,7 +2,7 @@ package FPA_Webapp
 
 import FPA_Webapp_G237.Functionality
 import FPA_Webapp_G237.Projects
-
+import core.FunctionTypes
 import org.springframework.transaction.annotation.Transactional
 
 /**
@@ -64,6 +64,26 @@ class ProjectService {
     {
         def p = Projects.get(id)
         p.delete();
+    }
+
+    def createFunctionality (String description, FunctionTypes ftype , Integer hcount, Integer vcount, Integer idProy)
+    {
+        println ("Description:"+description);
+        Projects proj = Projects.get(idProy);
+
+         def f = new Functionality (type:ftype?.name(), description:description, hcount: hcount, vcount: vcount , projects:proj, idProject: idProy);
+        def created = f.save(flush: true);
+
+         return created;
+
+    }
+
+
+    def removeFunctionality (Integer id)
+    {
+        def f = Functionality.get(id)
+        f.delete(flush: true)
+
     }
 
 }

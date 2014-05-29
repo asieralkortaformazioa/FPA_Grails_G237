@@ -25,6 +25,15 @@ class UrlMappings {
             action = [GET: "listProjectFunctionalities"]
         }
 
+        "/functionalities" (controller: "Functionalities") {
+            action = [POST: "create"]
+        }
+
+        "/functionalities/$id" (controller: "Functionalities") {
+            action = [DELETE: "delete"]
+        }
+
+
 
     }
 }

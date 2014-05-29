@@ -6,12 +6,12 @@ class Functionality {
 	String type
 	Integer hcount
 	Integer vcount
+
 	Projects projects
 
 	static belongsTo = [Projects]
 
 	static mapping = {
-		id generator: "assigned"
 		version false
 	}
 

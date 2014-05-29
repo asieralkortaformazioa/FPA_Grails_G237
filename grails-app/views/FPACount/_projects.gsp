@@ -4,19 +4,15 @@
 
     $(document).ready( function () {
         $("#projects").change(function () {
-            alert("ProjectSelected");
+//            alert("ProjectSelected");
             var idProj = document.getElementById("projects").value
-            loadProject (idProj);
+            loadFunctionalities (idProj);
         });
 
     });
 
-    function loadProject()
-    {
-
-    }
-
 </script>
+
 
 <div>
     <p>Projects: <g:select id="projects"  name="projects" noSelection="${['null':'Select One...']}" from="${viewBean.getProjects()}" value="" optionKey="id"/></p>
