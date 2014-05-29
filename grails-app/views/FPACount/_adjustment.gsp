@@ -1,7 +1,149 @@
 
 
+<script lang="text/javascript">
+
+
+    function configAdjustment () {
+//        alert ("ready2");
+
+        $("#helpAdjustemntFactor").hide();
+        $("#helpAf1").hide();
+        $("#helpAf2").hide();
+        $("#helpAf3").hide();
+        $("#helpAf4").hide();
+        $("#helpAf5").hide();
+        $("#helpAf6").hide();
+        $("#helpAf7").hide();
+        $("#helpAf8").hide();
+        $("#helpAf9").hide();
+        $("#helpAf10").hide();
+        $("#helpAf11").hide();
+        $("#helpAf12").hide();
+        $("#helpAf13").hide();
+        $("#helpAf14").hide();
+        $("#helpAdjustemntFactor").hide();
+
+
+        $("#txtAdjustmentFactor").click(function () {
+            if ($("#helpAdjustemntFactor").is(":hidden"))
+                $("#helpAdjustemntFactor").show();
+            else
+                $("#helpAdjustemntFactor").hide();
+        });
+
+        $("#af1").click(function () {
+            if ($("#helpAf1").is(":hidden"))
+                $("#helpAf1").show();
+            else
+                $("#helpAf1").hide();
+        });
+
+        $("#af2").click(function () {
+            if ($("#helpAf2").is(":hidden"))
+                $("#helpAf2").show();
+            else
+                $("#helpAf2").hide();
+        });
+
+        $("#af3").click(function () {
+            if ($("#helpAf3").is(":hidden"))
+                $("#helpAf3").show();
+            else
+                $("#helpAf3").hide();
+        });
+
+        $("#af4").click(function () {
+            if ($("#helpAf4").is(":hidden"))
+                $("#helpAf4").show();
+            else
+                $("#helpAf4").hide();
+        });
+
+        $("#af5").click(function () {
+            if ($("#helpAf5").is(":hidden"))
+                $("#helpAf5").show();
+            else
+                $("#helpAf5").hide();
+        });
+
+        $("#af6").click(function () {
+            if ($("#helpAf6").is(":hidden"))
+                $("#helpAf6").show();
+            else
+                $("#helpAf6").hide();
+        });
+
+
+        $("#af7").click(function () {
+            if ($("#helpAf7").is(":hidden"))
+                $("#helpAf7").show();
+            else
+                $("#helpAf7").hide();
+        });
+
+        $("#af8").click(function () {
+            if ($("#helpAf8").is(":hidden"))
+                $("#helpAf8").show();
+            else
+                $("#helpAf8").hide();
+        });
+
+        $("#af9").click(function () {
+            if ($("#helpAf9").is(":hidden"))
+                $("#helpAf9").show();
+            else
+                $("#helpAf9").hide();
+        });
+
+        $("#af10").click(function () {
+            if ($("#helpAf10").is(":hidden"))
+                $("#helpAf10").show();
+            else
+                $("#helpAf10").hide();
+        });
+
+        $("#af11").click(function () {
+            if ($("#helpAf11").is(":hidden"))
+                $("#helpAf11").show();
+            else
+                $("#helpAf11").hide();
+        });
+
+        $("#af12").click(function () {
+            if ($("#helpAf12").is(":hidden"))
+                $("#helpAf12").show();
+            else
+                $("#helpAf12").hide();
+        });
+
+        $("#af13").click(function () {
+            if ($("#helpAf13").is(":hidden"))
+                $("#helpAf13").show();
+            else
+                $("#helpAf13").hide();
+        });
+
+        $("#af14").click(function () {
+            if ($("#helpAf14").is(":hidden"))
+                $("#helpAf14").show();
+            else
+                $("#helpAf14").hide();
+        });
+
+        $("#imgAdjustmentHelp").click(function () {
+            if ($("#helpAdjustemntFactor").is(":hidden"))
+                $("#helpAdjustemntFactor").show();
+            else
+                $("#helpAdjustemntFactor").hide();
+        });
+
+
+    };
+
+</script>
+
 <div style="border:2px solid;border-radius:25px; background-color: #8888BB">
-    <p id="txtAdjustmentFactor" ><h2>Adjustment Factor:</h2></p>
+    <p id="txtAdjustmentFactor" ><h2>Adjustment Factor <img width="20" height="20" src="../images/help.jpg" id="imgAdjustmentHelp" />:</h2></p>
     <div id="helpAdjustemntFactor">
         <table>
                 <thead><th>Score as</th><th>System Influence</th></thead>

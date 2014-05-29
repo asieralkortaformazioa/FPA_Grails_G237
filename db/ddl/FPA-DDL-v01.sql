@@ -90,3 +90,29 @@ insert into cplx_translation values (10,'EO',1,5);
 insert into cplx_translation values (11,'EO',2,7);
 
 
+
+
+
+create table projects (
+ID Integer,
+Description Varchar (50),
+PRIMARY KEY (ID)
+);
+
+
+create table functionality (
+ID Integer,
+Description Varchar (50),
+idProject integer,
+type varchar(50),
+hcount integer,
+vcount integer,
+PRIMARY KEY (ID),
+FOREIGN KEY (idProject) REFERENCES projects(ID)
+);
+
+
+INSERT INTO 'fpa'.'projects' ('ID', 'Description') VALUES ('1', 'ProjectTest');
+
+INSERT INTO 'fpa'.'functionality' ('ID', 'Description', 'idProject', 'type', 'hcount', 'vcount', 'projects_id') VALUES ('1', 'Funct1', '1', 'ILF', '2', '3', '1');
+

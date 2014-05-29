@@ -1,5 +1,8 @@
 package core
 
+import FPA_Webapp_G237.Projects
+import grails.converters.JSON
+
 /**
  * Created by developer on 27/05/14.
  */
@@ -45,6 +48,8 @@ class FpaViewBean {
     private Integer af12Count;
     private Integer af13Count;
     private Integer af14Count;
+
+    private List<Projects> projects;
 
 
     FpaViewBean() {
@@ -298,6 +303,29 @@ class FpaViewBean {
         this.af14Count = af14Count
     }
 
+    List<Projects> getProjects() {
+        return projects
+    }
+
+
+    String getJsonProjects ()
+    {
+        def converter = new JSON(target: getProjects());
+        def str = converter.toString();
+        println ("Converer:"+str);
+        return str
+
+    }
+
+    void setProjects(List<Projects> projects) {
+        this.projects = projects
+    }
+
+
+    List<String> getFunctions ()
+    {
+        return FunctionTypes.getFucntions();
+    }
 
     @Override
     public String toString() {
