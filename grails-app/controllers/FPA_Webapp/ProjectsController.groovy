@@ -8,8 +8,16 @@ class ProjectsController {
 
     def projectsService = new ProjectService();
 
+    static allowedMethods = [ showcount: "GET" , doCreateProject:"POST" ]
 
     def list = {
         render projectsService.getAllProjects() as JSON
     }
+
+
+    def doCreateProject ()
+    {
+        println("doProjectCreate");
+    }
+
 }

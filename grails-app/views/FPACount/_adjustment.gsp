@@ -1,10 +1,74 @@
 
-
 <script lang="text/javascript">
 
+function toJson( selector ) {
+        var o = {};
+        $.map( $( selector ), function( n,i )
+        {
+            o[n.name] = $(n).val();
+        });
+        return o;
+    }
+
+
+function doSaveAdjustmentFactor ()
+{
+
+//    if (adjustmentsValid()) {
+
+    //    validateAfs();
+            var json = toJson("pageForm");
+    //    $("#pageForm").setAttribute("action","saveAdjustmentFactor");
+            document.getElementById("pageForm").action = "saveAdjustmentFactor";
+            var url = getAdjustmentFactorUrl();
+            alert(url);
+            $.post({url: url, data: json,
+                success: function (data) {
+                    alert("Success Adjustment");
+                },
+                error: function (data) {
+                    alert("Error:" + data);
+                }
+            });
+//    }
+//    else{
+//        alert ("There are invalid adjustments...");
+//    }
+}
+
+function adjustmentsValid ()
+{
+    var valid=true;
+    for (var i=1; i<=14; i++)
+    {
+        valid = valid && $("#helpAf"+i).valid();
+    }
+    return valid ;
+
+}
+function validateAfs ()
+{
+    jQuery.validator.setDefaults({
+        debug: true,
+        success: "valid"
+    });
+    for (var i =1; i<=14; i++)
+    {
+        $("#helpAf"+i).validate ({
+                rules: {
+                    field: {
+                        required: true,
+                        number: true
+                    }
+             }
+        }
+        );
+    }
+}
 
     function configAdjustment () {
 //        alert ("ready2");
+        validateAfs ();
 
         $("#helpAdjustemntFactor").hide();
         $("#helpAf1").hide();
@@ -137,8 +201,55 @@
                 $("#helpAdjustemntFactor").hide();
         });
 
+        //Set validators
+
+        jQuery.validator.setDefaults({
+            debug: true,
+            success: "valid"
+        });
 
     };
+
+
+    function getAdjustmentFactorUrl ()
+    {
+        var idProj = document.getElementById("projects").value;
+//        return "../adjustmentFactor/"+idProj;
+        return "getAdjustmentFactors/"+idProj;
+    }
+
+    function loadAdjustmentFactors (idProj)
+    {
+
+        var url = getAdjustmentFactorUrl();
+        var resData= null;
+        var obj = null;
+        console.log("Loading adjustmentFactors for :"+idProj);
+        console.log ("url:"+url);
+        $.get(url,function (data){
+
+            var res = $.parseJSON(data);
+            var i=0;
+            $.each(res.items,
+                function (index, it) {
+
+                    var arr = it;
+                    console.log("i:" + i);
+                    var responseElem = document.getElementById("af" + (i + 1) + "Count")
+
+                    console.log("arr:" + arr);
+                    if (responseElem != null) {
+                        responseElem.value = arr.response;
+                    }
+                    i++;
+
+                    })
+        });
+
+    }
+
+
+
 
 </script>
 
@@ -533,5 +644,5 @@
 
     </table>
 </div>
-
+<g:submitButton name="save" value="save" onclick="javascript:doSaveAdjustmentFactor();"/>
 </div>

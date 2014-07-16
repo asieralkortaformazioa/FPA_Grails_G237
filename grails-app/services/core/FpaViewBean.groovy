@@ -2,10 +2,12 @@ package core
 
 import FPA_Webapp_G237.Projects
 import grails.converters.JSON
+import grails.validation.Validateable
 
 /**
  * Created by developer on 27/05/14.
  */
+@Validateable
 class FpaViewBean {
 
     private Integer ilfCount

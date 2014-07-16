@@ -12,9 +12,17 @@
     <link rel="stylesheet" type="text/css" href="../css/jquery.dataTables.css">
     <!--<script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script> -->
     <script type="text/javascript" src="../js/jquery.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+
+    <script type="text/javascript" src="../js/jquery-ui.js"></script>
     <script type="text/javascript" charset="utf8" src="../js/jquery.dataTables.js"></script>
 
+    <script src="../js/jquery.validate.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/additional-methods.min.js" type="text/javascript" charset="utf-8"></script>
+
+
 </head>
+
 
 viewBean:${viewBean}
     <body>
@@ -24,21 +32,51 @@ $(document).ready (function () {
 //    alert("Ready");
     configAdjustment();
 
+    attacthProjectEvents ();
+
     loadFunctionalities (document.getElementById("projects").value);
+
+    loadAdjustmentFactors (document.getElementById("projects").value);
 
 });
 
 
+function getCalculateUrl ()
+{
+    var idProj = document.getElementById("projects").value;
+//        return "../adjustmentFactor/"+idProj;
+    return "doCalculate/"+idProj;
+}
+
+function doCalculate()
+{
+
+    var url = getCalculateUrl();
+    var resData= null;
+    var obj = null;
+    console.log("Loading caculations for url :"+url);
+    $.get(url,function (data){
+
+        var res = $.parseJSON(data);
+
+        document.getElementById("adjustmentFactor").innerHTML = document.getElementById("adjustmentFactor").innerHTML+ "<b>"+res.adjustmentFactor+"</b>";
+        document.getElementById("unadjustedFunctionPoints").innerHTML = document.getElementById("unadjustedFunctionPoints").innerHTML+ "<b>"+res.ufps+"</b>";
+        document.getElementById("adjustedFunctionPoints").innerHTML = document.getElementById("adjustedFunctionPoints").innerHTML+ "<b>"+res.afps+"</b>";
+
+    });
+
+}
 </script>
 
         <p><h1>Function Point Analysis</h1></p>
 
 
 
-        <g:render template="projects"/>
 
 
-        <g:form action="doCount" >
+        <g:form name="pageForm" id="pageForm" action="doCount" >
+
+            <g:render template="projects"/>
 
             <!--
                 render template="dataFunctions"
@@ -50,8 +88,8 @@ $(document).ready (function () {
 
                 <g:render template="adjustment" />
 
+                <input type="button" name="Calculate" value="Calculate" onClick="javascript:doCalculate()" />
 
-                <g:submitButton name="Calculate" value="Calculate"/>
 
             </g:form>
 

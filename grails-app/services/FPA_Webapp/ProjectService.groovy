@@ -1,7 +1,13 @@
 package FPA_Webapp
 
+import FPA_Webapp_G237.AdjustmentFactor
 import FPA_Webapp_G237.Functionality
 import FPA_Webapp_G237.Projects
+
+//
+//import FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.Functionality
+//import FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.Projects
+//import FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.AdjustmentFactor.FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.AdjustmentFactor
 import core.FunctionTypes
 import org.springframework.transaction.annotation.Transactional
 
@@ -16,7 +22,7 @@ class ProjectService {
     {
 
         def projects = Projects.findAll()
-        println ("Projects:"+projects);
+        println ("FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.Projects:"+projects);
         return projects;
 
     }
@@ -34,7 +40,7 @@ class ProjectService {
 
         def proj = getProject (idProject);
 
-//        def functionalities = Functionality.where {
+//        def functionalities = FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.Functionality.where {
 //            //eq ("idProject", idProject)
 //            eq ("projects", proj)
 //        }
@@ -81,9 +87,57 @@ class ProjectService {
 
     def removeFunctionality (Integer id)
     {
+        println ("Removing functionality "+id);
         def f = Functionality.get(id)
         f.delete(flush: true)
 
+    }
+
+
+    def saveAdjustmentFactor (int idProject, int idQuestion, String response)
+    {
+        Projects proj = Projects.get (idProject);
+        def af = new AdjustmentFactor (projects:proj, idProject:idProject, idQuestion:idQuestion, response:response);
+        af.setIdProject(idProject)
+        af.setIdQuestion(idQuestion)
+        af.setResponse(response!=null? response.toInteger():null)
+        af.setProjects(proj)
+
+        println "Saving:"+af;
+        println (af.getIdProject())
+        println (af.getIdQuestion())
+        println (af.getResponse())
+        println (af.getProjects())
+        def created = af.save(flush:true);
+        return created;
+
+    }
+
+
+    def getAdjustmentFactors (Integer idProject)
+    {
+//        def afs = FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.AdjustmentFactor.where{
+//            eq("projects_id", idProject)
+//        }
+        def idProj=idProject
+        def allAfs= AdjustmentFactor.getAll();
+
+        def afs = new ArrayList <AdjustmentFactor>();
+        for (af in allAfs) {
+            af.projects.each {
+                if (idProj == it.id) {
+                    afs.add(af);
+                }
+            }
+        }
+        println (afs);
+        return afs;
+
+
+//        def functionalities = FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.Functionality.where {
+//            //eq ("idProject", idProject)
+//            eq ("projects", proj)
+//        }
     }
 
 }

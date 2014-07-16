@@ -7,12 +7,6 @@ class UrlMappings {
             }
         }
 
-        "/"(view:"/index")
-        "500"(view:'/error')
-        //"/projects"(resources:'Projects')
-        "/projects" (controller: "Projects") {
-                action = [GET: "list" , POST: "create"]
-        }
 
         /*
         "/projects/$id" (controller: "Functionalities") {
@@ -20,13 +14,29 @@ class UrlMappings {
         }
         */
 
+
+        "/"(view:"/index")
+        "500"(view:'/error')
+        //"/projects"(resources:'FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.Projects')
+        "/projects" (controller: "Projects") {
+                action = [GET: "list" , POST: "create"]
+        }
+
+
+        //adjustmentFactor
+        "/adjustmentFactor/$idProject" (controller: "AdjustmentFactor") {
+            action = [POST: "save"]
+        }
+
+
+/* */
         //Functionalities
         "/functionalities/listProjectFunctionalities/$idProject" (controller: "Functionalities") {
             action = [GET: "listProjectFunctionalities"]
         }
 
         "/functionalities" (controller: "Functionalities") {
-            action = [POST: "create"]
+            action = [POST: "create", PUT:"edit"]
         }
 
         "/functionalities/$id" (controller: "Functionalities") {
@@ -35,5 +45,7 @@ class UrlMappings {
 
 
 
+
     }
+
 }

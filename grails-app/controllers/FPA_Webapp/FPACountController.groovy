@@ -1,7 +1,8 @@
 package FPA_Webapp
 
-import FPA_Webapp_G237.ComplexityMatrix
+import core.Calculations
 import core.FpaViewBean
+import grails.converters.JSON
 
 class FPACountController {
 
@@ -21,7 +22,16 @@ class FPACountController {
     def countService = new CountService();
     def projectsService = new ProjectService();
 
+    def doCalculate ()
+    {
+         println ("doCalculate");
+        String idProjectStr = params.get("id")
+        Integer idProject = idProjectStr.toInteger();
+        Calculations calcs = countService.calculateProjectFps(idProject);
 
+        String result ="{ \"afps\":"+calcs.afps+", \"ufps\":"+calcs.ufps+", \"adjustmentFactor\":"+calcs.adjustmentFactor+" }";
+        render result
+    }
 
     def doCount ()
 //    (@RequestParameter ('ilfRetCount ')  String  ilfRetCount, @RequestParameter ('ilfDetCount ')  String  ilfDetCount,
@@ -168,6 +178,72 @@ class FPACountController {
     }
 
 
+    def createProject (){
+        println("FPACountController.createProject.  Do create project...");
 
+        String projectName= null;
+        if (params.projectName!=null && !"".equals(params.projectName))
+            projectName=params.projectName;
+
+        println ("Crating:"+projectName);
+        projectsService.addProject(projectName);
+    }
+
+
+    def deleteProject (){
+        Integer id =null;
+        if (params.projectName!=null && !"".equals(params.projectName))
+            id=params.projects.toInteger();
+        projectsService.removeProject(id);
+
+    }
+
+    def saveAdjustmentFactor (){
+        println("saveAdjustmentFactor")
+        String strIdproj = params.get("projects")
+        Integer idProject = strIdproj.toInteger();
+
+
+        for (int i=1;  i<=14;i++)
+        {
+            String strAf1Response = params.get("af"+i+"Count")
+            projectsService.saveAdjustmentFactor (idProject, i, strAf1Response);
+        }
+
+//        return "{result:true}"
+
+    }
+
+
+
+    def getAdjustmentFactors ()
+    {
+        println ("Params: "+params);
+
+        println ("getAdjustmentFactors...");
+        String strIdproj = params.get("id")
+        Integer idProject = strIdproj.toInteger();
+        def afs = projectsService.getAdjustmentFactors (idProject);
+        println ("Factors:"+afs);
+        def json ="";
+//        def json = new JSON (afs);
+
+        int i=0;
+        afs.each {
+            if (i!=0)
+                json =json+",";
+            json= json+"{\"idProject\":\""+it.idProject+"\", \"idQuestion\":\""+it.idQuestion+"\", \"response\": \""+it.response+"\"}";
+            i++
+        }
+
+//        def res = json.toString();
+        def res = "{ \"items\":[ "+json+"]}";
+        println (res);
+
+//        render afs as JSON;
+        render res;
+    }
 
 }
+
+

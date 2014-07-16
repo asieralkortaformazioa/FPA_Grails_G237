@@ -8,7 +8,8 @@ dataSource {
     */
     pooled = true
     driverClassName = "com.mysql.jdbc.Driver"
-    dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"
+    //dialect = "org.hibernate.dialect.dbMySQL5InnoDBDialect"
+    dialect ="org.hibernate.dialect.MySQLDialect"
     username="root"
     password ="root666"
     logSql = true

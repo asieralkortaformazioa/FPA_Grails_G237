@@ -119,3 +119,5 @@ log4j = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+grails.plugin.reveng.packageName=FPA_Webapp_G237

@@ -1,4 +1,5 @@
 package FPA_Webapp_G237
+// default package
 
 class Functionality {
 
@@ -6,7 +7,7 @@ class Functionality {
 	String type
 	Integer hcount
 	Integer vcount
-
+//	Long projectsId
 	Projects projects
 
 	static belongsTo = [Projects]

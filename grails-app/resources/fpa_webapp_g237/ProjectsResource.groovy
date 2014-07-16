@@ -15,7 +15,7 @@ class ProjectsResource {
     @GET
     @Produces('text/json')
     String getProjectsRepresentation() {
-//        'Projects'
+//        'FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.Projects'
 
         println ("Indexing..");
         def list = projectService.getAllProjects();

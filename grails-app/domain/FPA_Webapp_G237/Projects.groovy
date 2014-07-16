@@ -1,10 +1,12 @@
 package FPA_Webapp_G237
+// default package
 
 class Projects {
 
 	String description
 
-	static hasMany = [functionalities: Functionality]
+	static hasMany = [adjustmentFactors: AdjustmentFactor,
+	                  functionalities: Functionality]
 
 	static mapping = {
 		version false

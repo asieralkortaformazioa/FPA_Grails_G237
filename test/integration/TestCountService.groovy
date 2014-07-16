@@ -73,7 +73,7 @@ class TestCountService {
         viewBean.setEqFtrCount(2);
         viewBean.setEqDetCount(5);
 
-        //AdjustmentFactor
+        //FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.AdjustmentFactor.FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.AdjustmentFactor
         viewBean.setAf1Count(1);
         viewBean.setAf2Count(2);
         viewBean.setAf3Count(3);

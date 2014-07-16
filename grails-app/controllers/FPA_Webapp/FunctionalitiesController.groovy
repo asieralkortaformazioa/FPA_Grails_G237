@@ -12,6 +12,7 @@ class FunctionalitiesController {
 
     def projectsService = new ProjectService();
 
+//    static allowedMethods = [ listProjectFunctionalities: "GET" , edit:"PUT", create :"POST", delete:"DELETE" ]
 
 
     def list ()
@@ -27,7 +28,13 @@ class FunctionalitiesController {
         println ("listProjectFunctionalities");
 //        Integer idProj = request.parameterMap.get("idProject")?.toString();
         String strIdproj = params.get("idProject")
-        Integer idProj = params.get("idProject").toString().toInteger();
+
+        Integer idProj =null;
+        if (strIdproj!=null) {
+//            String strIdproj = params.get("idProject");
+            idProj = strIdproj?.toString()?.toInteger();
+        }
+        println("idProject:"+idProj);
         def functs = projectsService.getProjectFunctionalities(idProj);
         def adapter = new FunctionalityTableAdapter();
 
@@ -53,7 +60,26 @@ class FunctionalitiesController {
     {
         println ("Deleting...")
         Integer id = params?.id?.toInteger ();
+        println ("Id: "+id);
         projectsService.removeFunctionality(id)
-        render "" as JSON;
+//        Boolean res = new Boolean (true);
+        //render null as JSON;
+        return "{result:true}"
     }
+
+    def edit ()
+    {
+        println("params"+params)
+        def desc = params?.description;
+
+        def strType = params?.type;
+
+        def type = strType!=null?FunctionTypes.valueOf(strType):null;
+        Integer hcount = params?.hCount?.toInteger ();
+        Integer vcount = params?.vCount?.toInteger ();
+
+        def res = projectsService.createFunctionality(desc, type, hcount, vcount, params.idProj?.toInteger())
+        render res as JSON;
+    }
+
 }

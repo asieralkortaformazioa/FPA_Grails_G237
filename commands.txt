@@ -1,8 +1,20 @@
 
 
+grails integrate-with --intellij
+
 
 clear && grails clean && grails run-app
 
 
 grails -Dgrails.env=development db-reverse-engineer
 
+
+
+
+Debugger:
+intellij idea configuration
+ --> # run-app --debug-fork
+
+
+ + Debug config
+ remote on port 5005

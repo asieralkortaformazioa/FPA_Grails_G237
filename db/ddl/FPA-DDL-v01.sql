@@ -115,3 +115,15 @@ INSERT INTO 'fpa'.'projects' ('ID', 'Description') VALUES ('1', 'ProjectTest');
 
 INSERT INTO 'fpa'.' functionality' ('ID', 'Description', 'idProject', 'type', 'hcount', 'vcount', 'projects_id') VALUES ('1', 'Funct1', '1', 'ILF', '2', '3', '1');
 
+
+
+
+CREATE TABLE adjustment_factor (
+  id_project int(11) NOT NULL,
+  id_question int(11) NOT NULL,
+  response int(11) DEFAULT NULL,
+  PRIMARY KEY (id_project, id_question),
+  FOREIGN KEY (id_project) REFERENCES projects(ID)
+) ;
+
+
