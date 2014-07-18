@@ -98,6 +98,9 @@
         editAction="UPDATE"
         $("#CUDiv").dialog();
 //        $("#types").text(type);
+        console.log (document.getElementById ("types"));
+        $('#types').val(type);
+
         document.getElementById("idFunctionality").value=id;
 
         $("idFunctionality").prop('disabled', true);
@@ -195,6 +198,9 @@
                     %{--,"sAjaxSource": "<g:createLink resource='api/projects'/>"--}%
                     ,"sAjaxSource": getFunctionalitiesUrl ()
                 });
+
+                initFunctionalities();
+
             } );
 
 
@@ -217,15 +223,15 @@
 <input type="button" onclick="javascript:showCreateFunctionality();" value="Create"/>
 
 
-<div id="CUDiv" name="CUDiv" style="border:2px solid;border-radius:25px;padding:10px">
+<div id="CUDiv" name="CUDiv" style="border:2px solid;border-radius:25px;padding:10px;">
 
 <!--optionKey="id"-->
- <p>Types: <g:select id="types"  name="types" noSelection="${['null':'Select One...']}" from="${viewBean.getFunctions()}" value="" /></p>
+ <p>Types: <g:select id="types"  name="types" noSelection="${['-1':'Select One...']}" from="${viewBean.getFunctions()}" value="" /></p>
  <p> Description: <g:textField id="description" name="description" /></p>
  <p> Horizontal count: <g:textField id="hCount" name="hCount" /></p>
  <p> Vertical count: <g:textField id="vCount" name="vCount" /></p>
  <p> id: <g:textField id="idFunctionality" name="idFunctionality" /></p>
-<input type="button" onclick="javascript:storeFunctionality()" value="Create FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.Functionality"/>
+<input type="button" onclick="javascript:storeFunctionality()" value="Create Functionality"/>
 </div>
 
 

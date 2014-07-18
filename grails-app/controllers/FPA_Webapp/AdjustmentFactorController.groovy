@@ -23,13 +23,13 @@ class AdjustmentFactorController {
     }
 
 
-def getAdjustmentFactors ()
-{
-    String strIdproj = params.get("idProject")
-    Integer idProject = strIdproj.toInteger();
-    def afs = projectsService.getAdjustmentFactors (idProject);
-    render afs as JSON;
-}
+    def getAdjustmentFactors ()
+    {
+        String strIdproj = params.get("idProject")
+        Integer idProject = strIdproj.toInteger();
+        def afs = projectsService.getAdjustmentFactors (idProject);
+        render afs as JSON;
+    }
 
 
 }

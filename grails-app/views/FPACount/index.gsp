@@ -24,7 +24,6 @@
 </head>
 
 
-viewBean:${viewBean}
     <body>
 
 <script lang="text/javascript">
