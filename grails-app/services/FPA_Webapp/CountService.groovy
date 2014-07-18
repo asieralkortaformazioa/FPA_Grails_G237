@@ -20,6 +20,8 @@ class CountService {
         ILF, EIF, EI, EO, EQ, EOEQ, ILFEIF
     }
 
+    String [] transactionalFunctions = ["EI","EO", "EQ"];
+    String [] dataFunctions =   ["EIF","ILF"];
 
     def getComplexityFromMatrixCount(String tp, Integer hcount, Integer vcount, FpaViewBean viewBean) {
         Integer result = 0;
@@ -288,8 +290,6 @@ class CountService {
         Calculations calcs= new Calculations ();
         def afps = calculateAdjFactor(proj, calcs);
 
-
-
         return calcs;
 
     }
@@ -303,10 +303,35 @@ class CountService {
     }
 
 
+
+   private Set<Functionality> filter (Set<Functionality> functs , String[] types)
+   {
+
+       Set<Functionality> filtered = new HashSet<Functionality> ();
+
+       functs.each {
+           for (String type : types)
+           {
+               if (type== it.type)
+                   filtered.add(it);
+           }
+       }
+       return filtered;
+   }
+
+
+
     Float calculateAdjFactor(Projects proj, Calculations calcs) {
         float adjustedFps = 0;
 
         if (proj != null) {
+            Integer txUfps = calculateFunctionalityFps (filter (proj.functionalities,transactionalFunctions));
+            Integer dataUfps = calculateFunctionalityFps (filter (proj.functionalities,dataFunctions));
+
+            calcs.setDataFunctions(dataUfps);
+            calcs.setTransactionalFunctions(txUfps);
+
+
             Integer ufps = calculateFunctionalityFps(proj.functionalities);
 
             Integer res = 0;
@@ -325,4 +350,5 @@ class CountService {
         return adjustedFps;
     }
 }
+
 

@@ -70,6 +70,9 @@ function validateAfs ()
 //        alert ("ready2");
         validateAfs ();
 
+        $("#AdjustemntFactorVisible").hide();
+        $("#AdjustemntFactorHidden").show();
+
         $("#helpAdjustemntFactor").hide();
         $("#helpAf1").hide();
         $("#helpAf2").hide();
@@ -251,9 +254,26 @@ function validateAfs ()
 
 
 
+function doShowAdjFactor()
+{
+
+    if ($("#AdjustemntFactorHidden").is(":hidden"))
+    {
+        $("#AdjustemntFactorHidden").show();
+        $("#AdjustemntFactorVisible").hide();
+    }
+    else
+    {
+        $("#AdjustemntFactorHidden").hide();
+        $("#AdjustemntFactorVisible").show();
+    }
+}
+
 </script>
 
-<div style="border:2px solid;border-radius:25px; background-color: #8888BB">
+<input type="button" onclick="javascript:doShowAdjFactor();" value="Show/Hide adjustment factor"/>
+<div id="AdjustemntFactorHidden"><h2>Adjustment Factor</h2> </div>
+<div id="AdjustemntFactorVisible" style="border:2px solid;border-radius:25px; background-color: #8888BB">
     <p id="txtAdjustmentFactor" ><h2>Adjustment Factor <img width="20" height="20" src="../images/help.jpg" id="imgAdjustmentHelp" />:</h2></p>
     <div id="helpAdjustemntFactor">
         <table>
@@ -645,4 +665,6 @@ function validateAfs ()
     </table>
 </div>
 <g:submitButton name="save" value="save" onclick="javascript:doSaveAdjustmentFactor();"/>
+<br/>
+
 </div>

@@ -58,9 +58,12 @@ function doCalculate()
 
         var res = $.parseJSON(data);
 
-        document.getElementById("adjustmentFactor").innerHTML = document.getElementById("adjustmentFactor").innerHTML+ "<b>"+res.adjustmentFactor+"</b>";
-        document.getElementById("unadjustedFunctionPoints").innerHTML = document.getElementById("unadjustedFunctionPoints").innerHTML+ "<b>"+res.ufps+"</b>";
-        document.getElementById("adjustedFunctionPoints").innerHTML = document.getElementById("adjustedFunctionPoints").innerHTML+ "<b>"+res.afps+"</b>";
+        document.getElementById("dataFunctions").innerHTML = "<b>"+res.dataFunctions+"</b>";
+        document.getElementById("txFunctions").innerHTML = "<b>"+res.transactionalFunctions+"</b>";
+
+        document.getElementById("adjustmentFactor").innerHTML =  "<b>"+res.adjustmentFactor+"</b>";
+        document.getElementById("unadjustedFunctionPoints").innerHTML =  "<b>"+res.ufps+"</b>";
+        document.getElementById("adjustedFunctionPoints").innerHTML = "<b>"+res.afps+"</b>";
 
     });
 
@@ -87,13 +90,13 @@ function doCalculate()
 
                 <g:render template="adjustment" />
 
-                <input type="button" name="Calculate" value="Calculate" onClick="javascript:doCalculate()" />
 
-
-            </g:form>
 
 
         <g:render template="result"/>
+
+
+        </g:form>
 
     </body>
 </html>

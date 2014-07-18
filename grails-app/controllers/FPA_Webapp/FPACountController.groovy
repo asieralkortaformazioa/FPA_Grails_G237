@@ -29,7 +29,8 @@ class FPACountController {
         Integer idProject = idProjectStr.toInteger();
         Calculations calcs = countService.calculateProjectFps(idProject);
 
-        String result ="{ \"afps\":"+calcs.afps+", \"ufps\":"+calcs.ufps+", \"adjustmentFactor\":"+calcs.adjustmentFactor+" }";
+        String result ="{ \"afps\":"+calcs.afps+", \"ufps\":"+calcs.ufps+", \"adjustmentFactor\":"+calcs.adjustmentFactor+" , \"dataFunctions\":"+calcs.dataFunctions+" , \"transactionalFunctions\":"+calcs.transactionalFunctions+"}";
+        println result
         render result
     }
 

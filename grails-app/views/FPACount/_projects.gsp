@@ -13,6 +13,7 @@
             console.log ("Loading functionality...");
             loadFunctionalities (idProj);
             loadAdjustmentFactors(idProj);
+            clearResults();
         });
 
         $("#createButton").click ( function (){

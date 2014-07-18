@@ -1,37 +1,29 @@
 
+<script type="application/javascript">
+    function clearResults()
+    {
+        document.getElementById("dataFunctions").innerHTML="";
+        document.getElementById("txFunctions").innerHTML="";
+        document.getElementById("adjustmentFactor").innerHTML="";
+        document.getElementById("unadjustedFunctionPoints").innerHTML="";
+        document.getElementById("adjustedFunctionPoints").innerHTML="";
+    }
+
+</script>
 <div id="result" style="background: #aaaaaa;border:2px solid;border-radius:25px;">
+    <br/>
+    <input type="button" name="Calculate" value="Calculate" onClick="javascript:doCalculate()" />
     <p><b><H3>Result</H3></b></p>
 
-    <p>Data Functions:</p>
+    <p >Data Functions:</p> <p  id="dataFunctions" name="dataFunctions"></p>
 
-<g:if test="${  viewBean?.ilfCount!= null }">
-    <p>ilfCount: ${viewBean?.ilfCount}</p>
-</g:if>
-
-<g:if test="${  viewBean?.eifCount != null }">
-    <p>eifCount: ${viewBean?.eifCount} </p>
-</g:if>
-
-<p>Transactional Functions:</p>
-
-<g:if test="${  viewBean?.eiCount !=null }">
-    <p>eiCount: ${viewBean?.eiCount} </p>
-</g:if>
-
-<g:if test="${  viewBean?.eoCount !=null }">
-    <p>eoCount: ${viewBean?.eoCount} </p>
-</g:if>
-
-<g:if test="${ viewBean?.eqCount !=null }">
-    <p>eqCount: ${viewBean?.eqCount} </p>
-</g:if>
-
-<p id="adjustmentFactor" name="adjustmentFactor" >Adjustment Factor:</p>
-
-<p id="unadjustedFunctionPoints" name="unadjustedFunctionPoints" >UnadjustedFPs:${viewBean?.unadjustedFps} </p>
+<p>Transactional Functions:</p> <p  id="txFunctions" name="txFunctions" ></p>
 
 
+<p > Adjustment Factor:</p> <p  id="adjustmentFactor" name="adjustmentFactor" ></p>
 
-<p id="adjustedFunctionPoints" name="adjustedFunctionPoints">AdjustedFPs:${viewBean?.adjustedFps}</p>
+<p >UnadjustedFPs:</p> <p id="unadjustedFunctionPoints" name="unadjustedFunctionPoints" > </p>
+
+<p >AdjustedFPs:</p> <p id="adjustedFunctionPoints" name="adjustedFunctionPoints"></p>
 
 </div>
