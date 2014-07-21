@@ -13,11 +13,11 @@ class FunctionalityTableAdapter {
         def res = new ArrayList<String,List<String>> ();
         ((List<Functionality>)functionalities)?.each {
             def props = new ArrayList<String> ();
-            props.add(it.id)
+            props.add(""+it.id)
             props.add(it.description)
             props.add(it.type)
-            props.add(it.hcount)
-            props.add(it.vcount)
+            props.add(""+it.hcount)
+            props.add(""+it.vcount)
             //props.add("javascript: deleteFunctionality("+it.id+")")
             res.add(props)
         }

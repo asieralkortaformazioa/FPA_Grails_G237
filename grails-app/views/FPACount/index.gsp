@@ -33,7 +33,8 @@ $(document).ready (function () {
 
     attacthProjectEvents ();
 
-    loadFunctionalities (document.getElementById("projects").value);
+    initFunctionalities();
+
 
     loadAdjustmentFactors (document.getElementById("projects").value);
 

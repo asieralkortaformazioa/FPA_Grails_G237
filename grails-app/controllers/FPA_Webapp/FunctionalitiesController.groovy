@@ -24,6 +24,7 @@ class FunctionalitiesController {
     def listProjectFunctionalities ()
     {
         println ("ParamMap:"+request.parameterMap)
+
         println ("params:"+params)
         println ("listProjectFunctionalities");
 //        Integer idProj = request.parameterMap.get("idProject")?.toString();
@@ -38,9 +39,13 @@ class FunctionalitiesController {
         def functs = projectsService.getProjectFunctionalities(idProj);
         def adapter = new FunctionalityTableAdapter();
 
+        println("functs:"+functs)
         def res =adapter.adapt(functs)
+        println (res);
+        def json = res as JSON;
 
-        render res as JSON;
+        println ("json"+json);
+        render json;
 
     }
 
@@ -64,7 +69,7 @@ class FunctionalitiesController {
         projectsService.removeFunctionality(id)
 //        Boolean res = new Boolean (true);
         //render null as JSON;
-        return "{result:true}"
+        return "{\"result\":\"true\"}"
     }
 
     def edit ()
@@ -79,7 +84,9 @@ class FunctionalitiesController {
         Integer vcount = params?.vCount?.toInteger ();
 
         def res = projectsService.createFunctionality(desc, type, hcount, vcount, params.idProj?.toInteger())
-        render res as JSON;
+        def json = res as JSON;
+        println ("json:"+json);
+        render json;
     }
 
 }

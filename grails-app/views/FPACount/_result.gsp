@@ -15,9 +15,9 @@
     <input type="button" name="Calculate" value="Calculate" onClick="javascript:doCalculate()" />
     <p><b><H3>Result</H3></b></p>
 
-    <p >Data Functions:</p> <p  id="dataFunctions" name="dataFunctions"></p>
+    <p>Data Functions:</p> <p  id="dataFunctions" name="dataFunctions"></p>
 
-<p>Transactional Functions:</p> <p  id="txFunctions" name="txFunctions" ></p>
+    <p>Transactional Functions:</p> <p  id="txFunctions" name="txFunctions" ></p>
 
 
 <p > Adjustment Factor:</p> <p  id="adjustmentFactor" name="adjustmentFactor" ></p>

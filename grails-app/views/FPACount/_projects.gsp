@@ -11,7 +11,8 @@
             var idProj = document.getElementById("projects").value;
 //            alert ("Loading functionality...");
             console.log ("Loading functionality...");
-            loadFunctionalities (idProj);
+//            loadFunctionalities (idProj);
+            createLoadFunctionalities();
             loadAdjustmentFactors(idProj);
             clearResults();
         });
@@ -44,7 +45,7 @@
 
 
 <div>
-    <p>FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.Projects: <g:select id="projects"  name="projects" noSelection="${['null':'Select One...']}" from="${viewBean.getProjects()}" value="" optionKey="id"/></p>
+    <p>Projects: <g:select id="projects"  name="projects" noSelection="${['null':'Select One...']}" from="${viewBean.getProjects()}" value="" optionKey="id"/></p>
     <p><g:actionSubmit action="deleteProject" value="Delete selected project" /></p>
     <p><g:textField name="projectName" id="projectName" />
         <!-- <g:submitButton name="createButton" id="createButton" value="Create Project"/>-->
