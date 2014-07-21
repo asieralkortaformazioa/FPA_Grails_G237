@@ -131,6 +131,7 @@
             .done(function (data){
     //            alert ("done");
                 resData = data;
+                    var dataSet= null;
                 var dataRes = new Array (0);
 
     //            obj.each (iter , function (){
@@ -159,6 +160,32 @@
 
 
 
+
+
+                    $('#functionsTable').dataTable().fnDestroy();
+
+                    document.getElementById("divFunctionalitiesDataTable").innerHTML='<table cellpadding="0" cellspacing="0" border="0" class="display" id="functionsTable"></table>';
+
+                    console.log ("DataSet to Draw:"+dataSet);
+                    var dataTable = $('#functionsTable').dataTable( {
+                        "data": dtDataSet,
+                        "columns": [
+                            { "title": "id" },
+                            { "title": "Description" },
+                            { "title": "type" },
+                            { "title": "HCount", "class": "center" },
+                            { "title": "VCount", "class": "center" },
+                            { "title": "Edit", "class": "center" },
+                            { "title": "Delete", "class": "center" }
+                        ]
+                    } );
+                    console.log ("Created Datatable");
+                    console.log (dataTable);
+
+                    $("#divFunctionalities").append (dataTable);
+
+
+
                 })
                 .fail(function (data){
                     alert ("error:"+data.error+ "msg: "+data.message);
@@ -178,28 +205,28 @@
 
 
         var dataSet = getFunctionalities();
-
-        $('#functionsTable').dataTable().fnDestroy();
-
-        document.getElementById("divFunctionalitiesDataTable").innerHTML='<table cellpadding="0" cellspacing="0" border="0" class="display" id="functionsTable"></table>';
-
-        console.log ("DataSet to Draw:"+dataSet);
-        var dataTable = $('#functionsTable').dataTable( {
-            "data": dtDataSet,
-            "columns": [
-                { "title": "id" },
-                { "title": "Description" },
-                { "title": "type" },
-                { "title": "HCount", "class": "center" },
-                { "title": "VCount", "class": "center" },
-                { "title": "Edit", "class": "center" },
-                { "title": "Delete", "class": "center" }
-            ]
-        } );
-        console.log ("Created Datatable");
-        console.log (dataTable);
-
-        $("#divFunctionalities").append (dataTable);
+//
+//        $('#functionsTable').dataTable().fnDestroy();
+//
+//        document.getElementById("divFunctionalitiesDataTable").innerHTML='<table cellpadding="0" cellspacing="0" border="0" class="display" id="functionsTable"></table>';
+//
+//        console.log ("DataSet to Draw:"+dataSet);
+//        var dataTable = $('#functionsTable').dataTable( {
+//            "data": dtDataSet,
+//            "columns": [
+//                { "title": "id" },
+//                { "title": "Description" },
+//                { "title": "type" },
+//                { "title": "HCount", "class": "center" },
+//                { "title": "VCount", "class": "center" },
+//                { "title": "Edit", "class": "center" },
+//                { "title": "Delete", "class": "center" }
+//            ]
+//        } );
+//        console.log ("Created Datatable");
+//        console.log (dataTable);
+//
+//        $("#divFunctionalities").append (dataTable);
 
     }
 
