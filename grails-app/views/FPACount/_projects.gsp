@@ -13,7 +13,7 @@
             console.log ("Loading functionality...");
 //            loadFunctionalities (idProj);
             createLoadFunctionalities();
-            loadAdjustmentFactors(idProj);
+//            loadAdjustmentFactors(idProj);
             clearResults();
         });
 

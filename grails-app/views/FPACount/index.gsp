@@ -24,82 +24,79 @@
 </head>
 
 
-    <body>
+<body>
 
 <script lang="text/javascript">
-$(document).ready (function () {
+    $(document).ready (function () {
 //    alert("Ready");
-    configAdjustment();
+        configAdjustment();
 
-    attacthProjectEvents ();
+        initFunctionalities();
 
-    initFunctionalities();
-
-
-    loadAdjustmentFactors (document.getElementById("projects").value);
-
-});
-
-
-function getCalculateUrl ()
-{
-    var idProj = document.getElementById("projects").value;
-//        return "../adjustmentFactor/"+idProj;
-    return "doCalculate/"+idProj;
-}
-
-function doCalculate()
-{
-
-    var url = getCalculateUrl();
-    var resData= null;
-    var obj = null;
-    console.log("Loading caculations for url :"+url);
-    $.get(url,function (data){
-
-        var res = $.parseJSON(data);
-
-        document.getElementById("dataFunctions").innerHTML = "<b>"+res.dataFunctions+"</b>";
-        document.getElementById("txFunctions").innerHTML = "<b>"+res.transactionalFunctions+"</b>";
-
-        document.getElementById("adjustmentFactor").innerHTML =  "<b>"+res.adjustmentFactor+"</b>";
-        document.getElementById("unadjustedFunctionPoints").innerHTML =  "<b>"+res.ufps+"</b>";
-        document.getElementById("adjustedFunctionPoints").innerHTML = "<b>"+res.afps+"</b>";
+        attacthProjectEvents ();
 
     });
 
-}
+
+    function getCalculateUrl ()
+    {
+        var idProj = document.getElementById("projects").value;
+//        return "../adjustmentFactor/"+idProj;
+        return "doCalculate/"+idProj;
+    }
+
+    function doCalculate()
+    {
+
+        var url = getCalculateUrl();
+        var resData= null;
+        var obj = null;
+        console.log("Loading caculations for url :"+url);
+        $.get(url,function (data){
+
+            var res = $.parseJSON(data);
+
+            document.getElementById("dataFunctions").innerHTML = "<b>"+res.dataFunctions+"</b>";
+            document.getElementById("txFunctions").innerHTML = "<b>"+res.transactionalFunctions+"</b>";
+
+            document.getElementById("adjustmentFactor").innerHTML =  "<b>"+res.adjustmentFactor+"</b>";
+            document.getElementById("unadjustedFunctionPoints").innerHTML =  "<b>"+res.ufps+"</b>";
+            document.getElementById("adjustedFunctionPoints").innerHTML = "<b>"+res.afps+"</b>";
+
+        });
+
+    }
 </script>
 
-        <p><h1>Function Point Analysis</h1></p>
+<p><h1>Function Point Analysis</h1></p>
 
 
 
 
 
-        <g:form name="pageForm" id="pageForm" action="doCount" >
+<g:form name="pageForm" id="pageForm" action="doCount" >
 
-            <g:render template="projects"/>
+    <g:render template="projects"/>
 
-            <!--
-                render template="dataFunctions"
-                render template="txFunctions"
-            -->
+    <!--
+        render template="dataFunctions"
+        render template="txFunctions"
+    -->
 
-                <g:render template="functionList" />
-
-
-                <g:render template="adjustment" />
+    <g:render template="functionList" />
 
 
+    <g:render template="adjustment" />
 
 
-        <g:render template="result"/>
 
 
-        </g:form>
+    <g:render template="result"/>
 
-    </body>
+
+</g:form>
+
+</body>
 </html>
 
 

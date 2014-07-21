@@ -223,7 +223,7 @@ function validateAfs ()
 
     function loadAdjustmentFactors (idProj)
     {
-
+/*
         var url = getAdjustmentFactorUrl();
         var resData= null;
         var obj = null;
@@ -248,6 +248,8 @@ function validateAfs ()
 
                     })
         });
+
+        */
 
     }
 
