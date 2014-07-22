@@ -84,9 +84,66 @@
 
           });
 
-          $("#showCreateProject").click(function (){
+          $("#editProject").click (function (){
+
+              var projectId=$("#projects").val();
+              var data = {projects : projectId};
+              var url = "<g:createLink controller="projects" action="doEdit"  />";
+//              var url = "/FPA_Grails_G237/projects/"; //
+//              url +=projectId;
+
+              var projectName=$("#projectName").val();
+
+              $.ajax ({
+                  url: url,
+                  type:"PUT",
+                  dataType:"json",
+                  data: JSON.stringify ({
+                      "projects":projectId,
+                      "projectName": projectName
+                  })
+              }).done (function (result){
+                  console.log (result);
+//                  var obj = $.parseJSON( result);
+                  if (result!=null ) {
+                      alert("Project edited successfully.");
+                      location.reload();
+                  }
+                  else {
+                      alert ("Could not save project with id:"+projectId);
+                  }
+              }) .fail (function (xhr, status, text){
+                  var response = xhr.response;
+                  alert ("Status:"+status);
+                  alert ("Text::"+text);
+                  alert ("Error editing project:"+xhr.responseText);
+                  alert ("Error: "+response.error);
+              });
+
+          });
+
+          $("#showEditProject").click(function () {
+                  var proj =$("#projects").val();
+//                  $("#idProject").val(proj);
+              document.getElementById("idProject").value= proj;
+                      var name= $('select[id=projects] option:selected').text();
+//                  $("#projectName").val(name);
+                  document.getElementById("projectName").value= name;
+                $("#editProject").show();
+                $("#createProject").hide();
+                $("#divCreateProject").dialog();
+
+          });
+
+
+          $("#showCreateProject").click(function () {
+
+              document.getElementById("projectName").value= "";
+              $("#editProject").hide();
+              $("#createProject").show();
               $("#divCreateProject").dialog();
           });
+
     };
 
 
@@ -101,12 +158,24 @@
 
 <div>
     <p>Projects: <g:select id="projects"  name="projects" noSelection="${['-1':'Select One...']}" from="${viewBean.getProjects()}" optionValue="description" optionKey="id"/></p>
-    <p><input type="button" name="deleteProject" id="deleteProject" value="Delete selected project" /></p>
-    <input type="button" name="showCreateProject" id="showCreateProject"  value="Create Project" />
+    <p>
+       <input type="button" name="deleteProject" id="deleteProject" value="Delete selected project" />
+       <input type="button" name="showEditProject" id="showEditProject"  value="Edit Project" />
+       <input type="button" name="showCreateProject" id="showCreateProject"  value="Create Project" />
+    </p>
+
+
+
+
 </div>
 
 <div id="divCreateProject" name="divCreateProject" style="border:2px solid;border-radius:25px;padding:10px;">
-    <p><g:textField name="projectName" id="projectName" />
-        <input type="button" name="createProject" id="createProject"  value="Create Project" />
+    <input type="hidden" name="idProject" id="idProject"/>
+    <p><input type="text" name="projectName" id="projectName" />
+       <input type="button" name="createProject" id="createProject"  value="Create Project" />
+       <input type="button" name="editProject" id="editProject"  value="Save Project" />
     </p>
 </div>
+
+
+

@@ -83,6 +83,19 @@ class ProjectService {
         return removed ;
     }
 
+
+    def saveProject (Integer idProject, String desc)
+    {
+        Boolean ok = false;
+        if (idProject!=null) {
+            Projects proj = Projects.get(idProject)
+            proj.setDescription(desc)
+            proj.save(flush:true);
+            ok=true;
+        }
+        return ok;
+    }
+
     def createFunctionality (String description, FunctionTypes ftype , Integer hcount, Integer vcount, Integer idProy)
     {
         println ("Description:"+description);

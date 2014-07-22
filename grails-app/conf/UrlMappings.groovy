@@ -43,6 +43,9 @@ class UrlMappings {
             action = [DELETE: "delete"]
         }
 
+        "/projects/doEdit" (controller: "Projects") {
+            action = [PUT:"doEdit"]
+        }
 
         "/projects/$projects" (controller: "Projects") {
             action = [DELETE: "deleteProject", POST: "doCreateProject"]
