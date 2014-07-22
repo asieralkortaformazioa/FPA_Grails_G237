@@ -57,28 +57,29 @@
         var vCount =document.getElementById("vCount").value;
         var types = document.getElementById("types").value;
 
+
         var data ={
                 id:id,
                 types: types,
                 description: desc,
                 hCount: hCount,
-                vCount: vCount
+                vCount: vCount,
+                action:"PUT"
             };
 
         $.ajax({
             url: "../functionalities",
-            type:"PUT",
-                data:data,
-                done:function (resData){
+            type:'PUT',
+                data:data})
+                .done (function (resData){
                     var obj= $.parseJSON(resData);
-                    alert ("FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.Functionality stored successfully.");
+                    alert ("FPA_Webapp_G237.Functionality stored successfully.");
                 hideCreateFunctionality();
-                },
-            fail: function  (xhr, ajaxOptions, thrownError) {
+                })
+            .fail( function  (xhr, ajaxOptions, thrownError) {
                 alert(xhr.status);
                 alert(thrownError);
-            }
-        });
+            });
 //        createLoadFunctionalities ();
         location.reload();
     }
@@ -108,93 +109,88 @@
 
     function getFunctionalities ()
     {
+        var idProj = document.getElementById ("projects").value;
 
+        var dtData = null;
+
+        if (idProj!=undefined && idProj!=null && idProj!="null") {
 //        console.log("Loading fucntionalities for :"+idProj);
-        //var dataTable = $("#functionsTable").dataTable();
-        //dataTable.fnClearTable();
-        var url = getFunctionalitiesUrl();
-        var resData= null;
-        var obj = null;
+            //var dataTable = $("#functionsTable").dataTable();
+            //dataTable.fnClearTable();
+            var url = getFunctionalitiesUrl();
+            var resData = null;
+            var obj = null;
 
 //        var dataTable = $('#functionsTable');
 //        console.log("Clearing...");
 //        console.log(dataTable);
-        //dataTable.fnClearTable();
+            //dataTable.fnClearTable();
 
 
+            $.get(url, function (data) {
 
-        var dtData =null;
+            })
+                    .done(function (data) {
+                        //            alert ("done");
+                        resData = data;
+                        var dataSet = null;
+                        var dataRes = new Array(0);
 
-        $.get(url,function (data){
+                        //            obj.each (iter , function (){
+                        console.log("Length:" + resData.length);
+                        for (var i = 0, l = resData.length; i < l; i++) {
+                            var arr = new Array(0);
+                            var cell = resData[i];
+                            // Add table cells:
+                            for (var j = 0; j < cell.length; j++) {
+                                arr.push(cell[j]);
+                            }
+                            arr.push("<a href=\"javascript:showEditFunctionality(" + arr[0] + ",'" + arr[2] + "','" + arr[1] + "', " + arr[3] + "," + arr[4] + ")\">edit</a>");
+                            arr.push("<a href=\"javascript:deleteFunctionality(" + arr[0] + ")\">delete</a>");
+                            //                dataTable.fnAddData(arr);
+                            dataRes.push(arr);
+                            //                dataRes [i]= arr;
+                        }
+                        dtDataSet = dataRes;
+                        console.log(dataRes);
+                        dtData = dataRes;
 
-        })
-            .done(function (data){
-    //            alert ("done");
-                resData = data;
-                    var dataSet= null;
-                var dataRes = new Array (0);
-
-    //            obj.each (iter , function (){
-                    console.log("Length:"+resData.length);
-                for (var i= 0, l= resData.length;i<l;i++)
-                {
-                    var arr = new Array (0);
-                    var cell = resData[i];
-                    // Add table cells:
-                    for (var j=0;j<cell.length;j++) {
-                        arr.push(cell[j]);
-                    }
-                    arr.push("<a href=\"javascript:showEditFunctionality("+arr[0]+",'"+arr[2]+"','"+arr[1]+"', "+arr[3]+","+arr[4]+")\">edit</a>");
-                    arr.push("<a href=\"javascript:deleteFunctionality("+arr[0]+")\">delete</a>");
-    //                dataTable.fnAddData(arr);
-                    dataRes.push(arr);
-    //                dataRes [i]= arr;
-                }
-                dtDataSet= dataRes;
-                console.log(dataRes );
-                dtData= dataRes;
-
-                console.log(dtDataSet);
-
-    //            loadAdjustmentFactors (document.getElementById("projects").value);
+                        console.log(dtDataSet);
 
 
+                        $('#functionsTable').dataTable().fnDestroy();
+
+                        document.getElementById("divFunctionalitiesDataTable").innerHTML = '<table cellpadding="0" cellspacing="0" border="0" class="display" id="functionsTable"></table>';
+
+                        console.log("DataSet to Draw:" + dataSet);
+                        var dataTable = $('#functionsTable').dataTable({
+                            "data": dtDataSet,
+                            "columns": [
+                                { "title": "id" },
+                                { "title": "Description" },
+                                { "title": "type" },
+                                { "title": "HCount", "class": "center" },
+                                { "title": "VCount", "class": "center" },
+                                { "title": "Edit", "class": "center" },
+                                { "title": "Delete", "class": "center" }
+                            ]
+                        });
+                        console.log("Created Datatable");
+                        console.log(dataTable);
+
+                        $("#divFunctionalities").append(dataTable);
 
 
+                    })
+                    .fail(function (data) {
+                        alert("error:" + data.error + "msg: " + data.message);
+                    });
 
-                    $('#functionsTable').dataTable().fnDestroy();
+            console.log("after ajax");
+            console.log(dtData);
 
-                    document.getElementById("divFunctionalitiesDataTable").innerHTML='<table cellpadding="0" cellspacing="0" border="0" class="display" id="functionsTable"></table>';
-
-                    console.log ("DataSet to Draw:"+dataSet);
-                    var dataTable = $('#functionsTable').dataTable( {
-                        "data": dtDataSet,
-                        "columns": [
-                            { "title": "id" },
-                            { "title": "Description" },
-                            { "title": "type" },
-                            { "title": "HCount", "class": "center" },
-                            { "title": "VCount", "class": "center" },
-                            { "title": "Edit", "class": "center" },
-                            { "title": "Delete", "class": "center" }
-                        ]
-                    } );
-                    console.log ("Created Datatable");
-                    console.log (dataTable);
-
-                    $("#divFunctionalities").append (dataTable);
-
-
-
-                })
-                .fail(function (data){
-                    alert ("error:"+data.error+ "msg: "+data.message);
-                });
-
-        console.log("after ajax");
-        console.log(dtData );
-
-        console.log(dtDataSet );
+            console.log(dtDataSet);
+        }
         return dtData;
 
     }

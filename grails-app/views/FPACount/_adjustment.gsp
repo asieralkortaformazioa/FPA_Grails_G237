@@ -221,35 +221,48 @@ function validateAfs ()
         return "getAdjustmentFactors/"+idProj;
     }
 
+
+    function clearAdjustmentFactors ()
+    {
+            for (var i =1;i<15;i++)
+            {
+                var elem = document.getElementById ("af"+i+"Count");
+                elem.value="";
+            }
+    }
+
     function loadAdjustmentFactors (idProj)
     {
-/*
-        var url = getAdjustmentFactorUrl();
-        var resData= null;
-        var obj = null;
-        console.log("Loading adjustmentFactors for :"+idProj);
-        console.log ("url:"+url);
-        $.get(url,function (data){
+        clearAdjustmentFactors ();
 
-            var res = $.parseJSON(data);
-            var i=0;
-            $.each(res.items,
-                function (index, it) {
+        if (idProj!= undefined && idProj!=null && idProj!="null") {
+            /* */
+            var url = getAdjustmentFactorUrl();
+            var resData = null;
+            var obj = null;
+            console.log("Loading adjustmentFactors for :" + idProj);
+            console.log("url:" + url);
+            $.get(url, function (data) {
 
-                    var arr = it;
-                    console.log("i:" + i);
-                    var responseElem = document.getElementById("af" + (i + 1) + "Count")
+                var res = $.parseJSON(data);
+                var i = 0;
+                $.each(res.items,
+                        function (index, it) {
 
-                    console.log("arr:" + arr);
-                    if (responseElem != null) {
-                        responseElem.value = arr.response;
-                    }
-                    i++;
+                            var arr = it;
+                            console.log("i:" + i);
+                            var responseElem = document.getElementById("af" + (i + 1) + "Count")
 
-                    })
-        });
+                            console.log("arr:" + arr);
+                            if (responseElem != null) {
+                                responseElem.value = arr.response;
+                            }
+                            i++;
 
-        */
+                        })
+            });
+
+        }
 
     }
 

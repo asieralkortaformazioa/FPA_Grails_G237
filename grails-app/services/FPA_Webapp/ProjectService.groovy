@@ -63,13 +63,24 @@ class ProjectService {
     def addProject (String desc)
     {
         def proj = new Projects(description: desc);
-        proj.save();
+        proj.save(flush:true);
     }
 
-    def removeProject (Integer id)
-    {
-        def p = Projects.get(id)
-        p.delete();
+    def removeProject (Integer id) {
+        Boolean removed = false;
+        println "Deleting project id:" + id
+        if (id != null) {
+            try {
+                def p = Projects.get(id)
+                println "Deleting project:" + p
+                p?.delete(flush: true);
+                removed = true
+            } catch (Exception e) {
+                removed = false
+                e.printStackTrace();
+            }
+        }
+        return removed ;
     }
 
     def createFunctionality (String description, FunctionTypes ftype , Integer hcount, Integer vcount, Integer idProy)

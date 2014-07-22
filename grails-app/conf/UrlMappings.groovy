@@ -18,9 +18,9 @@ class UrlMappings {
         "/"(view:"/index")
         "500"(view:'/error')
         //"/projects"(resources:'FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.Projects')
-        "/projects" (controller: "Projects") {
-                action = [GET: "list" , POST: "create"]
-        }
+//        "/projects" (controller: "ProjectsController") {
+//                action = [GET: "list" , POST: "doCreateProject"]
+//        }
 
 
         //adjustmentFactor
@@ -43,7 +43,13 @@ class UrlMappings {
             action = [DELETE: "delete"]
         }
 
+        "/projects/deleteProject/$id" (controller: "Projects") {
+            action = [DELETE: "deleteProject"]
+        }
 
+        "/projects/$projects" (controller: "Projects") {
+            action = [DELETE: "deleteProject"]
+        }
 
 
     }

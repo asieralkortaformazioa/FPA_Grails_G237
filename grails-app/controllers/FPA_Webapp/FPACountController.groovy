@@ -180,23 +180,24 @@ class FPACountController {
 
 
     def createProject (){
-        println("FPACountController.createProject.  Do create project...");
+        println("FPACountController.createProject. Do create project...");
 
         String projectName= null;
         if (params.projectName!=null && !"".equals(params.projectName))
             projectName=params.projectName;
 
-        println ("Crating:"+projectName);
+        println ("Creating:"+projectName);
         projectsService.addProject(projectName);
+        return "{\"result\":\"true\"}"
     }
 
 
     def deleteProject (){
         Integer id =null;
-        if (params.projectName!=null && !"".equals(params.projectName))
+        if (params.projects!=null && !"".equals(params.projects))
             id=params.projects.toInteger();
         projectsService.removeProject(id);
-
+        return "{\"result\":\"true\"}"
     }
 
     def saveAdjustmentFactor (){

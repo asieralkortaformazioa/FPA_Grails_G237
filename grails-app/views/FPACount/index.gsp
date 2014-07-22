@@ -35,6 +35,8 @@
 
         attacthProjectEvents ();
 
+        loadAdjustmentFactors (document.getElementById("projects").value);
+
     });
 
 
