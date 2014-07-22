@@ -113,7 +113,7 @@
 
         var dtData = null;
 
-        if (idProj!=undefined && idProj!=null && idProj!="null") {
+        if (idProj!=undefined && idProj!=null && idProj!="null" && idProj !="-1")  {
 //        console.log("Loading fucntionalities for :"+idProj);
             //var dataTable = $("#functionsTable").dataTable();
             //dataTable.fnClearTable();

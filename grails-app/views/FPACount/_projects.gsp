@@ -88,7 +88,7 @@
 
 
 <div>
-    <p>Projects: <g:select id="projects"  name="projects" noSelection="${['null':'Select One...']}" from="${viewBean.getProjects()}" value="" optionKey="id"/></p>
+    <p>Projects: <g:select id="projects"  name="projects" noSelection="${['-1':'Select One...']}" from="${viewBean.getProjects()}" optionValue="description" optionKey="id"/></p>
     <p><input type="button" name="deleteProject" id="deleteProject" value="Delete selected project" /></p>
     <p><g:textField name="projectName" id="projectName" />
         <input type="button" name="createProject" id="createProject"  value="Create Project" />
