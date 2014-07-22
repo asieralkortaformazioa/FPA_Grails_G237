@@ -15,6 +15,7 @@
                 createLoadFunctionalities();
                 loadAdjustmentFactors(idProj);
                 clearResults();
+                document.getElementById("result").style.visibility="hidden";
             }
         });
 

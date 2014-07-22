@@ -10,9 +10,11 @@
     }
 
 </script>
-<div id="result" style="background: #aaaaaa;border:2px solid;border-radius:25px;">
+<input type="button" name="Calculate" value="Calculate" onClick="javascript:doCalculate()" />
+
+<div id="result" style="background: #aaaaaa;border:2px solid;border-radius:25px;visibility: hidden">
     <br/>
-    <input type="button" name="Calculate" value="Calculate" onClick="javascript:doCalculate()" />
+
     <p><b><H3>Result</H3></b></p>
 
     <p>Data Functions:</p> <p  id="dataFunctions" name="dataFunctions"></p>

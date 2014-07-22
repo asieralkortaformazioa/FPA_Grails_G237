@@ -69,6 +69,8 @@
 
         });
 
+        document.getElementById("result").style.visibility= "visible";
+        $("#result").show();
     }
 </script>
 
