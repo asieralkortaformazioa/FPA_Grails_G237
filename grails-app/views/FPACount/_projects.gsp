@@ -35,6 +35,7 @@
                     })
                     .done (function (result){
                         alert ("Project created successfully.");
+                        location.reload();
                     })
                     .fail (function (xhr, status, text){
                         var response = xhr.response;
@@ -43,7 +44,7 @@
                         alert ("Error creating project:"+xhr.responseText);
                         alert ("Error: "+response.error);
             });
-            location.reload();
+
         });
 
           $("#deleteProject").click ( function (){
@@ -82,16 +83,30 @@
               });
 
           });
+
+          $("#showCreateProject").click(function (){
+              $("#divCreateProject").dialog();
+          });
     };
 
+
+    function initProjects ()
+    {
+        $("#divCreateProject").hide();
+
+        attacthProjectEvents ();
+    }
 </script>
 
 
 <div>
     <p>Projects: <g:select id="projects"  name="projects" noSelection="${['-1':'Select One...']}" from="${viewBean.getProjects()}" optionValue="description" optionKey="id"/></p>
     <p><input type="button" name="deleteProject" id="deleteProject" value="Delete selected project" /></p>
+    <input type="button" name="showCreateProject" id="showCreateProject"  value="Create Project" />
+</div>
+
+<div id="divCreateProject" name="divCreateProject" style="border:2px solid;border-radius:25px;padding:10px;">
     <p><g:textField name="projectName" id="projectName" />
         <input type="button" name="createProject" id="createProject"  value="Create Project" />
-
     </p>
 </div>

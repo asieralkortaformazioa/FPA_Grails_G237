@@ -43,12 +43,9 @@ class UrlMappings {
             action = [DELETE: "delete"]
         }
 
-        "/projects/deleteProject/$id" (controller: "Projects") {
-            action = [DELETE: "deleteProject"]
-        }
 
         "/projects/$projects" (controller: "Projects") {
-            action = [DELETE: "deleteProject"]
+            action = [DELETE: "deleteProject", POST: "doCreateProject"]
         }
 
 

@@ -33,7 +33,9 @@
 
         initFunctionalities();
 
-        attacthProjectEvents ();
+        initProjects();
+
+
 
         loadAdjustmentFactors (document.getElementById("projects").value);
 
