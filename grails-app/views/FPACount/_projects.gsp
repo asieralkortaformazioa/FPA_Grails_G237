@@ -163,12 +163,12 @@
        <input type="button" name="deleteProject" id="deleteProject" value="Delete selected project" />
        <input type="button" name="showEditProject" id="showEditProject"  value="Edit Project" />
        <input type="button" name="showCreateProject" id="showCreateProject"  value="Create Project" />
+        <a >Export</a>
+        <a >Import</a>
     </p>
 
-
-
-
 </div>
+
 
 <div id="divCreateProject" name="divCreateProject" style="border:2px solid;border-radius:25px;padding:10px;">
     <input type="hidden" name="idProject" id="idProject"/>

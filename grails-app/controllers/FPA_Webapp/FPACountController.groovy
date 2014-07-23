@@ -200,21 +200,6 @@ class FPACountController {
         return "{\"result\":\"true\"}"
     }
 
-    def saveAdjustmentFactor (){
-        println("saveAdjustmentFactor")
-        String strIdproj = params.get("projects")
-        Integer idProject = strIdproj.toInteger();
-
-
-        for (int i=1;  i<=14;i++)
-        {
-            String strAf1Response = params.get("af"+i+"Count")
-            projectsService.saveAdjustmentFactor (idProject, i, strAf1Response);
-        }
-
-//        return "{result:true}"
-
-    }
 
 
 

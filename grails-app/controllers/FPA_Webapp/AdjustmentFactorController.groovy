@@ -6,11 +6,25 @@ class AdjustmentFactorController {
 
     def projectsService = new ProjectService();
 
-    def index() {}
+    def index() {
+        redirect (action : "saveAdjustmentFactor", params: params)
+    }
 
-    def save ()
-    {
-        String strIdproj = params.get("idProject")
+
+
+    def saveAdjustmentFactor (){
+        println("saveAdjustmentFactor")
+
+        def id = null;
+
+        def json = request.JSON
+        if (json !=null) {
+            id = json.getAt("projects");
+
+            name = json.getAt("projectName");
+        }
+
+        String strIdproj = params.get("projects")
         Integer idProject = strIdproj.toInteger();
 
 
@@ -19,6 +33,8 @@ class AdjustmentFactorController {
             String strAf1Response = params.get("af"+i+"Count")
             projectsService.saveAdjustmentFactor (idProject, i, strAf1Response);
         }
+
+//        return "{result:true}"
 
     }
 

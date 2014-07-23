@@ -19,14 +19,29 @@ function doSaveAdjustmentFactor ()
     //    validateAfs();
             var json = toJson("pageForm");
     //    $("#pageForm").setAttribute("action","saveAdjustmentFactor");
-            document.getElementById("pageForm").action = "saveAdjustmentFactor";
-            var url = getAdjustmentFactorUrl();
+            var idProj = $("#projects").val();
+
+            var data= {}
+
+//            document.getElementById("pageForm").action = "saveAdjustmentFactor";
+
+            var url = "<g:createLink controller="adjustmentFactor" action="saveAdjustmentFactor" />"; //
+//            var url = getAdjustmentFactorUrl();
             alert(url);
-            $.post({url: url, data: json,
-                success: function (data) {
+            var params = {projects:idProj};
+            for (var i =1;i<15;i++ )
+            {
+                var propName = "af"+i+"Count";
+                params[propName]=document.getElementById(propName).value;
+
+            }
+            var json = JSON.stringify(params);
+
+            $.post(url, { data: json,
+                done: function (result) {
                     alert("Success Adjustment");
                 },
-                error: function (data) {
+                fail: function (data) {
                     alert("Error:" + data);
                 }
             });
@@ -679,7 +694,7 @@ function doShowAdjFactor()
 
     </table>
 </div>
-<g:submitButton name="save" value="save" onclick="javascript:doSaveAdjustmentFactor();"/>
+<input type="button" name="save" value="save" onclick="javascript:doSaveAdjustmentFactor();"/>
 <br/>
 
 </div>

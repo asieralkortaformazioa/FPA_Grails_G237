@@ -17,7 +17,7 @@ class Functionality {
 	}
 
 	static constraints = {
-		description nullable: true, maxSize: 50
+		description nullable: true, maxSize: 150
 		type nullable: true, maxSize: 50
 		hcount nullable: true
 		vcount nullable: true
