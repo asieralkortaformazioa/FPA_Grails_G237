@@ -20,8 +20,8 @@ class CountService {
         ILF, EIF, EI, EO, EQ, EOEQ, ILFEIF
     }
 
-    String [] transactionalFunctions = ["EI","EO", "EQ"];
-    String [] dataFunctions =   ["EIF","ILF"];
+    public String [] transactionalFunctions = ["EI","EO", "EQ"];
+    public String [] dataFunctions =   ["EIF","ILF"];
 
     def getComplexityFromMatrixCount(String tp, Integer hcount, Integer vcount, FpaViewBean viewBean) {
         Integer result = 0;
@@ -44,7 +44,8 @@ class CountService {
         //Collection cms =Complexitymatrix.executeQuery( ' Select distinct id from Complexitymatrix c  where c.type= :type  and ((c.horizontallowlimit<=:hcount and c.horizontaltoplimit>= :hcount ) or (c.horizontallowlimit IS NULL  and c.horizontaltoplimit>= :hcount ) or ( c.horizontallowlimit<= :hcount and c.horizontaltoplimit IS NULL )  and ((c.verticallowlimit<=:vcount and c.verticaltoplimit>= :vcount ) or (c.verticallowlimit IS NULL  and c.verticaltoplimit>= :vcount ) or ( c.verticallowlimit<= :vcount and c.verticaltoplimit IS NULL )  ) )',[ type:typeType, hcount: hcount,  vcount: vcount]) //.findAll() ,
         def params = [type: typeType, hcount: hcount, vcount: vcount]
         println("Params:" + params)
-        Collection cms = ComplexityMatrix.executeQuery(' Select distinct id from FPA_Webapp_G237.ComplexityMatrix c  where c.type= :type  and ((c.horizontalLowLimit<=:hcount and c.horizontalTopLimit>= :hcount ) or (c.horizontalLowLimit<0  and c.horizontalTopLimit>= :hcount ) or ( c.horizontalLowLimit<= :hcount and c.horizontalTopLimit<0 )  and ((c.verticalLowLimit<=:vcount and c.verticalTopLimit>= :vcount ) or (c.verticalLowLimit <0 and c.verticalTopLimit>= :vcount ) or ( c.verticalLowLimit<= :vcount and c.verticalTopLimit<0)  ) )', params)
+        Collection cms = ComplexityMatrix.executeQuery(' Select distinct id from FPA_Webapp_G237.ComplexityMatrix c  ' +
+                ' where c.type= :type  and ((c.horizontalLowLimit<=:hcount and c.horizontalTopLimit>= :hcount ) or (c.horizontalLowLimit<0  and c.horizontalTopLimit>= :hcount ) or ( c.horizontalLowLimit<= :hcount and c.horizontalTopLimit<0 ) ) and ((c.verticalLowLimit<=:vcount and c.verticalTopLimit>= :vcount ) or (c.verticalLowLimit <0 and c.verticalTopLimit>= :vcount ) or ( c.verticalLowLimit<= :vcount and c.verticalTopLimit<0)  ) ', params)
         //.findAll() ,
         println("Result:" + cms);
 
