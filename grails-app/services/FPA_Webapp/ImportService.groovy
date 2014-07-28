@@ -44,6 +44,7 @@ class ImportService {
 
 
     def importFromExcel(String file) {
+
 //         String fileName ="/mnt/shared/Caf/Projects/Calidad/Dokumentazioa/FPA_FP_Count_Invertido-v01.xls";
         InputStream myxls = new FileInputStream(file);
         HSSFWorkbook wb = new HSSFWorkbook(myxls);
@@ -90,8 +91,8 @@ class ImportService {
 //         savedProj.setFunctionalities(functs)
 
 //
-        projectsService.saveProject(savedProj);
-
+       Projects result =  projectsService.saveProject(savedProj);
+       return (result!=null)
     }
 
 

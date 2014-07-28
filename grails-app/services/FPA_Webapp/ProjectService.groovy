@@ -44,7 +44,7 @@ class ProjectService {
         println("idProj:"+idProject);
 
         def proj = getProject (idProject);
-f
+
 //        def functionalities = FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.Functionality.where {
 //            //eq ("idProject", idProject)
 //            eq ("projects", proj)

@@ -86,8 +86,8 @@ class ProjectsController {
             file = "/mnt/shared/Caf/Projects/Calidad/Dokumentazioa/FPA_FP_Count_Invertido-v01.xls";
 //        }
 
-        importService.importFromExcel(file);
-
+        boolean ok = importService.importFromExcel(file);
+        render "{ \"result\":"+ok+" } "
     }
 
 }

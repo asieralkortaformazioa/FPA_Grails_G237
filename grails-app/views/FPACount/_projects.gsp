@@ -158,23 +158,26 @@
 
               var fileName= $("#importFile").val();
 
-
-              $.post (url,{
-                          "fileName": fileName
-                      },
-                      function (result){
-                      })
-                      .done (function (result){
-                  alert ("Project created successfully.");
-                  location.reload();
-              })
-                      .fail (function (xhr, status, text){
-                  var response = xhr.response;
-                  alert ("Status:"+status);
-                  alert ("Text::"+text);
-                  alert ("Error creating project:"+xhr.responseText);
-                  alert ("Error: "+response.error);
-              });
+                if (fileName!=null) {
+                    $.post(url, {
+                                "fileName": fileName
+                            },
+                            function (result) {
+                            })
+                            .done(function (result) {
+                                alert("Project created successfully.");
+                                location.reload();
+                            })
+                            .fail(function (xhr, status, text) {
+                                var response = xhr.response;
+                                alert("Status:" + status);
+                                alert("Text::" + text);
+                                alert("Error creating project:" + xhr.responseText);
+                                alert("Error: " + response.error);
+                            });
+                }
+              else
+                alert ("Please select a file.");
           });
 
     };
