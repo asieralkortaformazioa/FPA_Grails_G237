@@ -3,6 +3,7 @@ package FPA_Webapp
 import core.Calculations
 import core.FpaViewBean
 import grails.converters.JSON
+import groovy.json.JsonBuilder
 
 class FPACountController {
 
@@ -29,9 +30,13 @@ class FPACountController {
         Integer idProject = idProjectStr.toInteger();
         Calculations calcs = countService.calculateProjectFps(idProject);
 
-        String result ="{ \"afps\":"+calcs.afps+", \"ufps\":"+calcs.ufps+", \"adjustmentFactor\":"+calcs.adjustmentFactor+" , \"dataFunctions\":"+calcs.dataFunctions+" , \"transactionalFunctions\":"+calcs.transactionalFunctions+"}";
+        //String result ="{ \"afps\":"+calcs.afps+", \"ufps\":"+calcs.ufps+", \"adjustmentFactor\":"+calcs.adjustmentFactor+" , \"dataFunctions\":"+calcs.dataFunctions+" , \"transactionalFunctions\":"+calcs.transactionalFunctions+" }";
+
+        println "Calculations: "+calcs
+        String result =new JsonBuilder( calcs ).toPrettyString()
         println result
         render result
+
     }
 
     def doCount ()

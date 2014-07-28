@@ -95,7 +95,8 @@ insert into cplx_translation values (11,'EO',2,7);
 
 create table projects (
 ID Integer AUTO_INCREMENT ,
-Description Varchar (50),
+Description Varchar (150),
+Productivity DECIMAL NOT NULL DEFAULT 0,
 PRIMARY KEY (ID)
 );
 
@@ -107,6 +108,7 @@ idProject integer,
 type varchar(50),
 hcount integer,
 vcount integer,
+Section varchar(100),
 PRIMARY KEY (ID),
 FOREIGN KEY (idProject) REFERENCES projects(ID)
 );

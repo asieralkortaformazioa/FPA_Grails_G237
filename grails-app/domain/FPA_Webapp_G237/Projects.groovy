@@ -4,6 +4,7 @@ package FPA_Webapp_G237
 class Projects {
 
 	String description
+	Long productivity
 
 	static hasMany = [adjustmentFactors: AdjustmentFactor,
 	                  functionalities: Functionality]
@@ -12,7 +13,21 @@ class Projects {
 		version false
 	}
 
+    /* */
 	static constraints = {
-		description nullable: true, maxSize: 50
+		description nullable: true , maxSize: 50
 	}
+
+
+    @Override
+    public String toString() {
+        return "Projects{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", productivity=" + productivity +
+                ", version=" + version +
+                ", adjustmentFactors=" + adjustmentFactors +
+                ", functionalities=" + functionalities +
+                '}';
+    }
 }

@@ -1,5 +1,6 @@
 package FPA_Webapp
 
+import FPA_Webapp_G237.Projects
 import grails.converters.JSON
 
 class ProjectsController {
@@ -7,6 +8,7 @@ class ProjectsController {
     def index() {}
 
     def projectsService = new ProjectService();
+    def importService = new ImportService();
 
     //static allowedMethods = [ showcount: "GET" , doCreateProject:"POST" ]
 
@@ -14,6 +16,18 @@ class ProjectsController {
         render projectsService.getAllProjects() as JSON
     }
 
+
+    def getProjectConfiguration (){
+        println "getProjectConfiguration"
+        Integer id = null;
+
+        if (params.id!=null && !"".equals(params.id))
+            id=params.id.toInteger();
+
+        Projects proj = projectsService.getProject(id);
+        String result = "{\"productivity\":\""+proj?.getProductivity()+"\"}"
+        render result
+    }
 
     def doCreateProject ()
     {
@@ -64,4 +78,17 @@ class ProjectsController {
         render "{ \"result\":"+ok+" } "
     }
 
+
+    def doImportProject ()
+    {
+        String file = params?.get("fileName")
+//        if (file ==null) {
+            file = "/mnt/shared/Caf/Projects/Calidad/Dokumentazioa/FPA_FP_Count_Invertido-v01.xls";
+//        }
+
+        importService.importFromExcel(file);
+
+    }
+
 }
+

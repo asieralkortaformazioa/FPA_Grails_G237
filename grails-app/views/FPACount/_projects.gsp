@@ -145,26 +145,80 @@
               $("#divCreateProject").dialog();
           });
 
+//          $("#exportExcel").click(function(e) {
+//              window.open('data:application/vnd.ms-excel,' + $('#divFunctionalities').html());
+//              e.preventDefault();
+//          });
+
+
+
+          $("#importExcel").click(function(e) {
+              var url = "<g:createLink controller="projects" action="doImportProject"  />"; //
+              console.log ("Post to:" +url);
+
+              var fileName= $("#importFile").val();
+
+
+              $.post (url,{
+                          "fileName": fileName
+                      },
+                      function (result){
+                      })
+                      .done (function (result){
+                  alert ("Project created successfully.");
+                  location.reload();
+              })
+                      .fail (function (xhr, status, text){
+                  var response = xhr.response;
+                  alert ("Status:"+status);
+                  alert ("Text::"+text);
+                  alert ("Error creating project:"+xhr.responseText);
+                  alert ("Error: "+response.error);
+              });
+          });
+
     };
 
+
+    function getProjectVariables ()
+    {
+        var id = $("#projects").val();
+        var url = "<g:createLink controller="projects" action="getProjectConfiguration"  />/"+id; //
+
+        $.get(url, function (){
+
+        }).done(function (data){
+            var obj = $.parseJSON( data);
+            document.getElementById ("productivity").value= obj.productivity;
+        }).fail(function (data){
+            alert ("fail:"+ data.error);
+        });
+
+    }
 
     function initProjects ()
     {
         $("#divCreateProject").hide();
 
         attacthProjectEvents ();
+
+        getProjectVariables ();
     }
 </script>
 
 
 <div>
-    <p>Projects: <g:select id="projects"  name="projects" noSelection="${['-1':'Select One...']}" from="${viewBean.getProjects()}" optionValue="description" optionKey="id"/></p>
+    <p>FPA_Webapp_G237.Projects: <g:select id="projects"  name="projects" noSelection="${['-1':'Select One...']}" from="${viewBean.getProjects()}" optionValue="description" optionKey="id"/></p>
+    <p>Productivity FPs per Day: <input type="text" name="productivity" id="productivity" /> </p>
+
     <p>
        <input type="button" name="deleteProject" id="deleteProject" value="Delete selected project" />
        <input type="button" name="showEditProject" id="showEditProject"  value="Edit Project" />
        <input type="button" name="showCreateProject" id="showCreateProject"  value="Create Project" />
-        <a >Export</a>
-        <a >Import</a>
+       <input type="button" name="exportExcel" id="exportExcel" value="Export to Excel" />
+
+       <input type="file" name="importFile" id="importFile" value="Imported File" />
+       <input type="button" name="importExcel" id="importExcel" value="Import Excel" />
     </p>
 
 </div>

@@ -7,7 +7,8 @@ class Functionality {
 	String type
 	Integer hcount
 	Integer vcount
-//	Long projectsId
+
+	String section
 	Projects projects
 
 	static belongsTo = [Projects]
@@ -16,10 +17,27 @@ class Functionality {
 		version false
 	}
 
+    /* */
 	static constraints = {
-		description nullable: true, maxSize: 150
-		type nullable: true, maxSize: 50
+		description nullable:  true , maxSize: 150
+		type nullable: true , maxSize: 50
 		hcount nullable: true
 		vcount nullable: true
+		section  nullable: true , maxSize: 100
 	}
+
+
+    @Override
+    public String toString() {
+        return "Functionality{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", type='" + type + '\'' +
+                ", hcount=" + hcount +
+                ", vcount=" + vcount +
+                ", section='" + section + '\'' +
+//                ", projects=" + projects +
+                ", version=" + version +
+                '}';
+    }
 }

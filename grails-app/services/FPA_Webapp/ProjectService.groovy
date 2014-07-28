@@ -5,24 +5,29 @@ import FPA_Webapp_G237.Functionality
 import FPA_Webapp_G237.Projects
 
 //
-//import FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.Functionality
-//import FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.Projects
-//import FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.AdjustmentFactor.FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.AdjustmentFactor
+//import FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.Functionality
+//import FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.Projects
+//import FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.AdjustmentFactor.FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.AdjustmentFactor
 import core.FunctionTypes
+import org.springframework.transaction.annotation.Propagation
 import org.springframework.transaction.annotation.Transactional
 
 /**
  * Created by developer on 28/05/14.
  */
-@Transactional
-class ProjectService {
 
+
+//@Transactional(propagation=Propagation.REQUIRED)
+//@grails.transaction.Transactional (propagation =Propagation.NESTED)
+@Transactional(propagation= Propagation.MANDATORY)
+
+class ProjectService {
 
     def getAllProjects ()
     {
 
         def projects = Projects.findAll()
-        println ("FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.Projects:"+projects);
+        println ("FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.Projects:"+projects);
         return projects;
 
     }
@@ -39,8 +44,8 @@ class ProjectService {
         println("idProj:"+idProject);
 
         def proj = getProject (idProject);
-
-//        def functionalities = FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.Functionality.where {
+f
+//        def functionalities = FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.Functionality.where {
 //            //eq ("idProject", idProject)
 //            eq ("projects", proj)
 //        }
@@ -63,7 +68,8 @@ class ProjectService {
     def addProject (String desc)
     {
         def proj = new Projects(description: desc);
-        proj.save(flush:true);
+        def project = proj.save(flush:true);
+        return project;
     }
 
     def removeProject (Integer id) {
@@ -95,6 +101,48 @@ class ProjectService {
         }
         return ok;
     }
+
+    def saveProject (Projects proj)
+    {
+        println ("Functionalitiy No."+proj?.getFunctionalities()?.size());
+
+
+        for (Functionality it : proj.getFunctionalities()){
+            println "Funcitonality:"+it
+            println "valid:"+it.validate()
+            println "errors:"+it.errors
+        }
+
+        Projects newProj = null
+        if (proj!=null) {
+            try {
+                Boolean valid  =proj.validate()
+                println "ProjectValid:? "+valid
+                println "Errors:"+proj.errors
+                println ("Project:"+proj)
+                newProj = proj.save(flush: true, failOnError: true);
+
+//            for (Functionality funct: proj?.functionalities)
+//            {
+//    //              funct.save();
+//                newProj.functionalities.add(funct)
+//            }
+//            newProj.save(flush:true)
+            } catch (Exception e) {
+                e.printStackTrace()
+                throw e;
+            }
+//
+        }
+//        newProj.save(flush:true)
+//        newProj.setFunctionalities(proj.getFunctionalities())
+//        Projects newProj2 = newProj.save(flush:true);
+
+        return newProj ;
+
+
+    }
+
 
     def createFunctionality (String description, FunctionTypes ftype , Integer hcount, Integer vcount, Integer idProy)
     {
@@ -140,7 +188,7 @@ class ProjectService {
 
     def getAdjustmentFactors (Integer idProject)
     {
-//        def afs = FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.AdjustmentFactor.where{
+//        def afs = FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.AdjustmentFactor.where{
 //            eq("projects_id", idProject)
 //        }
         def idProj=idProject
@@ -158,7 +206,7 @@ class ProjectService {
         return afs;
 
 
-//        def functionalities = FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.Functionality.where {
+//        def functionalities = FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.Functionality.where {
 //            //eq ("idProject", idProject)
 //            eq ("projects", proj)
 //        }

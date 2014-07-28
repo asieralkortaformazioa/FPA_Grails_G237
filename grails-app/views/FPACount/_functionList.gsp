@@ -73,7 +73,7 @@
                 data:data})
                 .done (function (resData){
                     var obj= $.parseJSON(resData);
-                    alert ("FPA_Webapp_G237.Functionality stored successfully.");
+                    alert ("FPA_Webapp_G237.FPA_Webapp_G237.Functionality stored successfully.");
                 hideCreateFunctionality();
                 })
             .fail( function  (xhr, ajaxOptions, thrownError) {
@@ -165,6 +165,7 @@
                         console.log("DataSet to Draw:" + dataSet);
                         var dataTable = $('#functionsTable').dataTable({
                             "data": dtDataSet,
+                            "iDisplayLength": 50,
                             "columns": [
                                 { "title": "id" },
                                 { "title": "Description" },
@@ -173,7 +174,20 @@
                                 { "title": "VCount", "class": "center" },
                                 { "title": "Edit", "class": "center" },
                                 { "title": "Delete", "class": "center" }
-                            ]
+                            ],
+                            "sDom": 'T<"clear">lfrtip'
+                            , "oTableTools": {
+                                "sSwfPath": "../swf/copy_csv_xls.swf",
+                                "aButtons": [
+                                    {
+                                        "sExtends": "xls",
+                                        "mColumns": [1,2, 3, 4, 5, 6, 7],
+                                        "sPdfOrientation": "landscape",
+                                        "sButtonText": "Export to Excel",
+                                        "oSelectorOpts": { filter: 'applied', order: 'current',page:'current' }
+                                    }
+                                ]
+                            }
                         });
                         console.log("Created Datatable");
                         console.log(dataTable);
@@ -285,7 +299,7 @@
 
 <div id="divFunctionalities" style="border:2px solid;border-radius:25px;padding:10px">
 
-    <p><h2>Functionality List</h2></p>
+    <p><h2>FPA_Webapp_G237.Functionality List</h2></p>
     <!-- -->
     <div id="divFunctionalitiesDataTable" >
         <table id="functionsTable">
@@ -304,7 +318,7 @@
  <p> Horizontal count: <g:textField id="hCount" name="hCount" /></p>
  <p> Vertical count: <g:textField id="vCount" name="vCount" /></p>
  <p> id: <g:textField id="idFunctionality" name="idFunctionality" /></p>
-<input type="button" onclick="javascript:storeFunctionality()" value="Create Functionality"/>
+<input type="button" onclick="javascript:storeFunctionality()" value="Create FPA_Webapp_G237.Functionality"/>
 </div>
 
 

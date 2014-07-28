@@ -17,7 +17,7 @@ class CountService {
     }
 
     enum ComplexityTypes {
-        ILF, EIF, EI, EO, EQ, EOEQ, ILFEIF
+        ILF, EIF, EI, EOF, EO, EQ, EOEQ, ILFEIF
     }
 
     public String [] transactionalFunctions = ["EI","EO", "EQ"];
@@ -258,9 +258,9 @@ class CountService {
 
         //DFP = (UFP +CFP )*VAF
 /*
-        result = (unadjustedFP + ConversionContribution (==0?))* FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.AdjustmentFactor.FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.AdjustmentFactor
+        result = (unadjustedFP + ConversionContribution (==0?))* FPA_Webapp_G237.AdjustmentFactor.FPA_Webapp_G237.AdjustmentFactor
 
-        result = (unadjustedFP )* FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.AdjustmentFactor.FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.AdjustmentFactor
+        result = (unadjustedFP )* FPA_Webapp_G237.AdjustmentFactor.FPA_Webapp_G237.AdjustmentFactor
 
         TDI = res cuestionario
 
@@ -291,8 +291,50 @@ class CountService {
         Calculations calcs= new Calculations ();
         def afps = calculateAdjFactor(proj, calcs);
 
+        calcs.setEstimateInDays(afps/proj.productivity);
+
+        calcs.setEstimateInHours(calcs.getEstimateInDays()*8);
+
+        calcs.setEstimatedFinishDate(calculateEstimateFinishDate(calcs));
         return calcs;
 
+    }
+
+
+
+    private static boolean isBusinessDay(Calendar dateToCheck, List<Integer> daysToExclude){
+        for(Integer dayToExclude : daysToExclude){
+            if(dayToExclude != null && dayToExclude == dateToCheck.get(Calendar.DAY_OF_WEEK)) {
+                return true;
+            }
+            else continue;
+        }
+        return false;
+    }
+
+    Date calculateEstimateFinishDate (Calculations calcs)
+    {
+//        Date today = new Date();
+
+        List<Integer> nonWorkingDays = new ArrayList<Integer>();
+        nonWorkingDays.add(Calendar.SATURDAY);
+        nonWorkingDays.add(Calendar.SUNDAY);
+
+        Calendar  finishDate = Calendar.getInstance();
+        Integer hours = calcs.getEstimateInHours();
+        while (hours >0)
+        {
+
+            if (isBusinessDay (finishDate,nonWorkingDays )) {
+
+                if (finishDate.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY)
+                    hours -= 7;
+                else
+                    hours -=8;
+            }
+            finishDate.add(Calendar.DATE, 1);
+        }
+        return new Date (finishDate.getTimeInMillis());
     }
 
     Integer calculateFunctionalityFps(Collection<Functionality> functionalities) {

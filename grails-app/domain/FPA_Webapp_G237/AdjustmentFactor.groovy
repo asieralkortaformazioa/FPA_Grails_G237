@@ -9,6 +9,7 @@ class AdjustmentFactor implements Serializable {
 	Integer idProject
 	Integer idQuestion
 	Integer response
+
 	Projects projects
 
 	int hashCode() {

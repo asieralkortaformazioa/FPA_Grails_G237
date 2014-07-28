@@ -17,7 +17,7 @@ class UrlMappings {
 
         "/"(view:"/index")
         "500"(view:'/error')
-        //"/projects"(resources:'FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.Projects')
+        //"/projects"(resources:'FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.FPA_Webapp_G237.Projects')
 //        "/projects" (controller: "ProjectsController") {
 //                action = [GET: "list" , POST: "doCreateProject"]
 //        }
@@ -43,9 +43,19 @@ class UrlMappings {
             action = [DELETE: "delete"]
         }
 
+
+        "/projects/getProjectConfiguration/$id" (controller: "Projects") {
+            action = [GET: "getProjectConfiguration"]
+        }
+
         "/projects/doEdit" (controller: "Projects") {
             action = [PUT:"doEdit"]
         }
+
+        "/projects/doImportProject" (controller: "Projects") {
+            action = [POST:"doImportProject"]
+        }
+
 
         "/projects/$projects" (controller: "Projects") {
             action = [DELETE: "deleteProject", POST: "doCreateProject"]

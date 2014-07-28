@@ -35,6 +35,7 @@ grails.project.dependency.resolution = {
     repositories {
         inherits true // Whether to inherit repository definitions from plugins
 
+        mavenRepo "http://mvnrepository.com/"
         grailsPlugins()
         grailsHome()
         mavenLocal()
@@ -44,7 +45,7 @@ grails.project.dependency.resolution = {
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
         //mavenRepo "http://repository.jboss.com/maven2/"
-        mavenRepo "http://mvnrepository.com/"
+
         mavenRepo "http://maven.restlet.org/"
 
     }
@@ -56,7 +57,8 @@ grails.project.dependency.resolution = {
         // runtime 'org.postgresql:postgresql:9.3-1100-jdbc41'
         test 'org.testng:testng:6.8.8'
         //test ":spock:0.7"
-
+        //compile 'joda-time:joda-time:2.3'
+        compile 'org.apache.poi:poi:3.10-FINAL'
     }
 
     plugins {
@@ -87,6 +89,10 @@ grails.project.dependency.resolution = {
         //compile ":handlebars-asset-pipeline:1.3.0.1"
         runtime ':db-reverse-engineer:0.5'
         compile ":jaxrs:0.10"
+
+
+//        compile "org.jadira.usertype:usertype.jodatime:1.9"
+
 
     }
 
